@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+   <bean id="userDao" class="com.spring.sample.dao.imp.UserDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="reviewDao" class="com.spring.sample.dao.imp.ReviewDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="reviewCommentDAO" class="com.spring.sample.dao.imp.ReviewCommentDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="ratingDAO" class="com.spring.sample.dao.imp.RatingDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="publisherDAO" class="com.spring.sample.dao.imp.PublisherDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="likeDAO" class="com.spring.sample.dao.imp.LikeDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="hastagDAO" class="com.spring.sample.dao.imp.HastagDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="categoryDAO" class="com.spring.sample.dao.imp.CategoryDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="bookDAO" class="com.spring.sample.dao.imp.BookDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="blackListDAO" class="com.spring.sample.dao.imp.BlackListDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+   <bean id="authorDAO" class="com.spring.sample.dao.imp.AuthorDAOImp">
+      <property name="hibernateTemplate" ref="hibernateTemplateBean" />
+   </bean>
+
+
+</beans>
