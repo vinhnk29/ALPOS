@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+ "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.spring.sample.entity.User" table="user">
+    	<id name="id" column="id" type="int">
+     		<generator class="native"></generator>
+    	</id>
+
+		<property name="name" column="name" type="string"></property>
+		<property name="dateOfBirth" column="date_of_birth" type="date"></property>
+		<property name="email" column="email" type="string"></property>
+		<property name="password" column="password" type="string" length="45"></property>
+  </class>
+
+</hibernate-mapping>  
