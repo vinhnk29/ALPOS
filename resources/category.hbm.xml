@@ -4,7 +4,7 @@
  "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.spring.sample.entity.Category" table="category">
+	<class name="alpos.entity.Category" table="category">
     	<id name="id" column="id" type="int">
      		<generator class="native"></generator>
     	</id>
