@@ -1,6 +1,8 @@
 package alpos.service;
 
 
-public interface UserService {
+import alpos.model.UserModel;
 
+public interface UserService {
+    public UserModel addUser(UserModel userModel) throws Exception;
 }

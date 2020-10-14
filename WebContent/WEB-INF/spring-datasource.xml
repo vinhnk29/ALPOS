@@ -28,7 +28,7 @@
       	<property name="dataSource" ref="dataSourceBean" />
       	<property name="mappingResources">
       		<list>
-
+                <value>user.hbm.xml</value>
          	</list>
       	</property>
       	<property name="hibernateProperties">
