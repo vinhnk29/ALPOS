@@ -1,12 +1,28 @@
 package alpos.model;
 
+import alpos.validator.FieldMatch;
+import alpos.validator.NullOrNotBlank;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+@FieldMatch.List({
+        @FieldMatch(first = "password", second = "confirmation", message = "{user.validation.password.notmatch}") })
 public class UserModel {
 
-	private Integer id;
-	private String name;
-	private String email;
-	private String password;
-	private String confirmation = null;
+    private Integer id;
+    @NotEmpty(message = "{user.validation.name.required}")
+    @Size(max = 64, message = "{user.validation.name.max}")
+    private String name;
+    @NotEmpty(message = "{user.validation.email.required}")
+    @Email(message = "{pattern.email}")
+    private String email;
+    @NullOrNotBlank(message = "{user.validation.password.required}")
+    @Size(max = 64, min = 6, message = "{user.validation.password.length}")
+    private String password;
+    @NullOrNotBlank(message = "{user.validation.confirmation.required}")
+    private String confirmation = null;
 
 	public UserModel() {
 

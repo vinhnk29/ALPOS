@@ -8,20 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImp implements UserService {
-
     private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
-    
+
     @Autowired
-    private UserDAO userDAO;
+    private PasswordEncoder passwordEncoder;
 
     private UserServiceImp() {
     }
     
+    @Autowired
+    private UserDAO userDAO;
+
     public void setUserDao(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
@@ -34,7 +37,7 @@ public class UserServiceImp implements UserService {
             condition.setId(userModel.getId());
             condition.setName(userModel.getName());
             condition.setEmail(userModel.getEmail());
-            condition.setPassword(userModel.getPassword());
+            condition.setPassword(passwordEncoder.encode(userModel.getPassword()));
             User user = userDAO.makePersistent(condition);
             userModel = new UserModel();
             BeanUtils.copyProperties(user, userModel);
@@ -44,20 +47,20 @@ public class UserServiceImp implements UserService {
             throw e;
         }
     }
-	
-	public UserModel findUserByEmail(String email) {
 
-		try {
-			User user = userDAO.findUserByEmail(email);
-			UserModel userModel = null;
-			if (user != null) {
-				userModel = new UserModel();
-				BeanUtils.copyProperties(user, userModel);
-			}
-			return userModel;
-		} catch (Exception e) {
-			
-			return null;
-		}
-	}
+    public UserModel findUserByEmail(String email) {
+
+        try {
+            User user = userDAO.findUserByEmail(email);
+            UserModel userModel = null;
+            if (user != null) {
+                userModel = new UserModel();
+                BeanUtils.copyProperties(user, userModel);
+            }
+            return userModel;
+        } catch (Exception e) {
+
+            return null;
+        }
+    }
 }
