@@ -2,20 +2,17 @@ package alpos.dao.imp;
 
 import alpos.dao.UserDAO;
 import alpos.entity.User;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class UserDAOImp extends GenericDAOImp<User, Integer> implements UserDAO {
     public UserDAOImp() {
         super(User.class);
     }
-    
     public User findUserByEmail(String email) {
     	
     	try {
@@ -31,7 +28,6 @@ public class UserDAOImp extends GenericDAOImp<User, Integer> implements UserDAO 
     		return null;
     	}
     }
-
 }
 
 
