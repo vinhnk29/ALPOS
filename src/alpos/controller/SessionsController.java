@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ import alpos.service.UserService;
 public class SessionsController {
 	private static final Logger logger = LoggerFactory.getLogger(SessionsController.class);
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
@@ -39,9 +43,8 @@ public class SessionsController {
 			Model model) {
 
 		logger.info("login form email: " + email);
-		logger.info("login form password: " + password);
 		UserModel userModel = userService.findUserByEmail(email);
-		if (userModel != null && password.equals(userModel.getPassword())) {
+		if (userModel != null && passwordEncoder.matches(password, userModel.getPassword())) {
 			logger.info("login success");
 			request.getSession().setAttribute("user", userModel);
 			return "redirect: " + request.getContextPath() + "/home";
