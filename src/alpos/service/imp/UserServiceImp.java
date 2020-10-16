@@ -8,20 +8,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImp implements UserService {
+
     private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
-
-    private UserServiceImp() {
-    }
-
+    
     @Autowired
     private UserDAO userDAO;
 
+    private UserServiceImp() {
+    }
+    
     public void setUserDao(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
@@ -44,4 +44,20 @@ public class UserServiceImp implements UserService {
             throw e;
         }
     }
+	
+	public UserModel findUserByEmail(String email) {
+
+		try {
+			User user = userDAO.findUserByEmail(email);
+			UserModel userModel = null;
+			if (user != null) {
+				userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+			}
+			return userModel;
+		} catch (Exception e) {
+			
+			return null;
+		}
+	}
 }
