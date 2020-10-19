@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{user.show.title}">User Info</title>
+</head>
+<body>
+<div class="row">
+  <aside class="col-md-4">
+	<section class="user_info">
+		<th:block th:if="${user}">
+		<h1>
+
+			[[${user.name}]]
+		</h1>		
+	    </th:block>
+	</section>
+  </aside>
+</body>
+</html>
