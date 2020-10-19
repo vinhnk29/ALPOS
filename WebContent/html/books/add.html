@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="#{book.new.title}"></title>
+</head>
+<body>
+<h1 th:text="#{book.new.title}"></h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form th:method="POST" th:action="@{/books}" th:object="${book}" th:fragment="form (title, action, method)">
+            <label th:for="${#ids.next('name')}" th:text="#{book.form.name}">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name')}? 'fieldError'" />
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Incorrect name</p>
+
+            <label th:for="${#ids.next('authorid')}" th:text="#{book.form.author}">Author ID</label>
+            <input type="text" th:field="*{authorId}" class="form-control" th:classappend="${#fields.hasErrors('authorId')}? 'fieldError'" />
+            <p th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}" class="error">Incorrect author id</p>
+
+            <label th:for="${#ids.next('publisherid')}" th:text="#{book.form.publisher}">Publisher ID</label>
+            <input type="text" th:field="*{publisherId}" class="form-control" th:classappend="${#fields.hasErrors('publisherId')}? 'fieldError'" />
+            <p th:if="${#fields.hasErrors('publisherId')}" th:errors="*{publisherId}" class="error">Incorrect publisher id</p>
+
+            <label th:for="${#ids.next('categoryid')}" th:text="#{book.form.category}">Category ID</label>
+            <input type="text" th:field="*{categoryId}" class="form-control" th:classappend="${#fields.hasErrors('categoryId')}? 'fieldError'" />
+            <p th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error">Incorrect category id</p>
+
+            <label th:for="${#ids.next('releaseyear')}" th:text="#{book.form.release}">Release Year</label>
+            <input type="number" th:field="*{releaseYear}" class="form-control" th:classappend="${#fields.hasErrors('releaseYear')}? 'fieldError'" />
+            <p th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}" class="error">Incorrect release year</p>
+
+            <input type="submit" value="Sign up" th:attr="value=#{book.new.title}" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

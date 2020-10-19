@@ -11,5 +11,11 @@
         <qualifier value="userService"/>
         <property name="userDao" ref="userDao" />
     </bean>
+
+    <bean id="bookService" class="alpos.service.imp.BookServiceImp">
+        <qualifier value="bookService"/>
+        <property name="bookDao" ref="bookDao" />
+    </bean>
+
  
 </beans>

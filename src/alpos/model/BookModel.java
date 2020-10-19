@@ -1,37 +1,30 @@
-package alpos.entity;
+package alpos.model;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class Book implements Serializable {
+public class BookModel extends BaseModel {
     private Integer id;
     private String  name;
+    @NotNull(message = "{book.validation.author_id.required}")
     private Integer authorId;
+    @NotNull(message = "{book.validation.publisher_id.required}")
     private Integer publisherId;
+    @NotNull(message = "{book.validation.category_id.required}")
     private Integer categoryId;
     private Integer releaseYear;
-    private User user;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book() {
+    public BookModel() {
 
     }
 
-    public Book(Integer id, String name, Integer authorId, Integer publisherId, Integer categoryId, Integer releaseYear, User user) {
+    public BookModel(Integer id, String name, @NotNull(message = "{book.validation.author_id.required}") Integer authorId, @NotNull(message = "{book.validation.publisher_id.required}") Integer publisherId, @NotNull(message = "{book.validation.category_id.required}") Integer categoryId, Integer releaseYear) {
         this.id = id;
         this.name = name;
         this.authorId = authorId;
         this.publisherId = publisherId;
         this.categoryId = categoryId;
         this.releaseYear = releaseYear;
-        this.user = user;
     }
 
     public Integer getId() {

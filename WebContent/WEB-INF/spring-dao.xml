@@ -10,4 +10,8 @@
     <bean id="userDao" class="alpos.dao.imp.UserDAOImp">
         <property name="hibernateTemplate" ref="hibernateTemplate" />
     </bean>
+
+    <bean id="bookDao" class="alpos.dao.imp.BookDAOImp">
+        <property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
 </beans>
