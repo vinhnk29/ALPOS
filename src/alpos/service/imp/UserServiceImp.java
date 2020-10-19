@@ -63,4 +63,21 @@ public class UserServiceImp implements UserService {
             return null;
         }
     }
+    
+	public UserModel findUser(Integer id) {
+		log.info("Checking the user in the database");
+		try {
+			User user = userDAO.find(id);
+			UserModel userModel = null;
+			if (user != null) {
+				userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+			}
+			return userModel;
+		} catch (Exception e) {
+			log.error("An error occurred while fetching the user details from the database", e);
+			return null;
+		}
+	}
+        
 }
