@@ -76,5 +76,18 @@ public class BookController {
         BookModel book = bookService.addBook(bookModel);
         return "static_pages/home";
     }
+	
+	public BookService getBookService() {
+		return bookService;
+	}
 
-}
+	public void setBookService(BookService bookService) {
+		this.bookService = bookService;
+	}
+
+	@GetMapping(value="/books")
+	public String index (Model model) {
+		List<BookModel> books = bookService.findAll();
+		model.addAttribute("books", books);
+		return "books/index";
+	}

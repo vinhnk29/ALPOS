@@ -11,6 +11,10 @@ public class Book implements Serializable {
     private Integer categoryId;
     private Integer releaseYear;
     private User user;
+	private Author author;
+    private Publisher publisher;
+    private Category category;
+
 
     public User getUser() {
         return user;
@@ -81,4 +85,27 @@ public class Book implements Serializable {
     public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
+    public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 }

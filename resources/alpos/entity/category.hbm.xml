@@ -10,6 +10,11 @@
     	</id>
 
 		<property name="name" column="name" type="string"></property>
+		<list name = "books">
+			<key column = "book_id"/>
+			<list-index column = "id" base="1" />
+			<one-to-many class = "alpos.entity.Book"/>
+		</list>
   </class>
 
 </hibernate-mapping>  
