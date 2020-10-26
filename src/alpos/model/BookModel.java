@@ -1,10 +1,12 @@
 package alpos.model;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class BookModel extends BaseModel {
     private Integer id;
+    @NotEmpty(message = "{book.validation.name.required}")
     private String  name;
     @NotNull(message = "{book.validation.author_id.required}")
     private Integer authorId;

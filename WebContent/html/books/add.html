@@ -10,19 +10,35 @@
         <form th:method="POST" th:action="@{/books}" th:object="${book}" th:fragment="form (title, action, method)">
             <label th:for="${#ids.next('name')}" th:text="#{book.form.name}">Name</label>
             <input type="text" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name')}? 'fieldError'" />
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Incorrect name</p>
+            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Incorrect name</p>
 
-            <label th:for="${#ids.next('authorid')}" th:text="#{book.form.author}">Author ID</label>
-            <input type="text" th:field="*{authorId}" class="form-control" th:classappend="${#fields.hasErrors('authorId')}? 'fieldError'" />
-            <p th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}" class="error">Incorrect author id</p>
+            <label th:for="${#ids.next('categoryId')}" th:text="#{book.form.category}">Category</label>
+            <select th:field="*{categoryId}">
+                <option value=""> -- </option>
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:utext="${category.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error">Incorrect category</p>
 
-            <label th:for="${#ids.next('publisherid')}" th:text="#{book.form.publisher}">Publisher ID</label>
-            <input type="text" th:field="*{publisherId}" class="form-control" th:classappend="${#fields.hasErrors('publisherId')}? 'fieldError'" />
-            <p th:if="${#fields.hasErrors('publisherId')}" th:errors="*{publisherId}" class="error">Incorrect publisher id</p>
+            <label th:for="${#ids.next('publisherId')}" th:text="#{book.form.publisher}">Publisher</label>
+            <select th:field="*{publisherId}">
+                <option value=""> -- </option>
+                <option th:each="publisher : ${publishers}"
+                        th:value="${publisher.id}"
+                        th:utext="${publisher.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('publisherId')}" th:errors="*{publisherId}" class="error">Incorrect publisher</p>
 
-            <label th:for="${#ids.next('categoryid')}" th:text="#{book.form.category}">Category ID</label>
-            <input type="text" th:field="*{categoryId}" class="form-control" th:classappend="${#fields.hasErrors('categoryId')}? 'fieldError'" />
-            <p th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error">Incorrect category id</p>
+            <label th:for="${#ids.next('authorId')}" th:text="#{book.form.author}">Author</label>
+            <select th:field="*{authorId}">
+                <option value=""> -- </option>
+                <option th:each="author : ${authors}"
+                        th:value="${author.id}"
+                        th:utext="${author.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}" class="error">Incorrect author</p>
+
 
             <label th:for="${#ids.next('releaseyear')}" th:text="#{book.form.release}">Release Year</label>
             <input type="number" th:field="*{releaseYear}" class="form-control" th:classappend="${#fields.hasErrors('releaseYear')}? 'fieldError'" />

@@ -17,5 +17,20 @@
         <property name="bookDao" ref="bookDao" />
     </bean>
 
+    <bean id="authorService" class="alpos.service.imp.AuthorServiceImp">
+        <qualifier value="authorService"/>
+        <property name="authorDao" ref="authorDao" />
+    </bean>
+
+    <bean id="publisherService" class="alpos.service.imp.PublisherServiceImp">
+        <qualifier value="publisherService"/>
+        <property name="publisherDao" ref="publisherDao" />
+    </bean>
+
+    <bean id="categoryService" class="alpos.service.imp.CategoryServiceImp">
+        <qualifier value="categoryService"/>
+        <property name="categoryDao" ref="categoryDao" />
+    </bean>
+
  
 </beans>

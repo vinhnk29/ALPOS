@@ -14,4 +14,16 @@
     <bean id="bookDao" class="alpos.dao.imp.BookDAOImp">
         <property name="hibernateTemplate" ref="hibernateTemplate" />
     </bean>
+
+    <bean id="authorDao" class="alpos.dao.imp.AuthorDAOImp">
+        <property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+
+    <bean id="categoryDao" class="alpos.dao.imp.CategoryDAOImp">
+        <property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
+
+    <bean id="publisherDao" class="alpos.dao.imp.PublisherDAOImp">
+        <property name="hibernateTemplate" ref="hibernateTemplate" />
+    </bean>
 </beans>
