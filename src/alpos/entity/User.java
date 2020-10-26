@@ -10,6 +10,15 @@ public class User implements Serializable {
     private Date dateOfBirth;
     private String email;
     private String password;
+    private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     public User() {
     }

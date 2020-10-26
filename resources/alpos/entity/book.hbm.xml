@@ -13,7 +13,7 @@
         <property name="authorId" column="author_id" type="int"></property>
         <property name="publisherId" column="publisher_id" type="int"></property>
         <property name="categoryId" column="category_id" type="int"></property>
-        <property name="releaseYear" column="release_year" type="date"></property>
+        <property name="releaseYear" column="release_year" type="int"></property>
     </class>
 
 </hibernate-mapping>

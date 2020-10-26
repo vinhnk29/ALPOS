@@ -29,6 +29,10 @@
       	<property name="mappingResources">
       		<list>
       			<value>alpos/entity/user.hbm.xml</value>
+				<value>alpos/entity/book.hbm.xml</value>
+				<value>alpos/entity/author.hbm.xml</value>
+				<value>alpos/entity/category.hbm.xml</value>
+				<value>alpos/entity/publisher.hbm.xml</value>
          	</list>
       	</property>
       	<property name="hibernateProperties">
