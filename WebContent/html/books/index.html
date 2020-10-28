@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{book.index.title}">Book List</title>
+</head>
+<body>
+	<h1 th:text="#{book.index.title}">Book List</h1>
+	<h2 th:text="#{book.index.catch.copy}">~~~The source of all knowledge~~~</h2>
+	
+	<table>
+		<tr>
+<!-- 
+			<td>Cover Image</td>
+ -->
+			<td>Title</td>
+			<td>Release Year <br/>
+			Author <br/>
+			Publisher</td>
+			<td>Category</td>
+			<td></td>
+		</tr>
+		
+		<tr th:each="book: ${books}">
+<!-- 
+			<td th:text="${book.coverImage}"/>
+ -->
+			<td th:text="${book.name}"/>
+			<td th:utext="${book.releaseYear} + '<br/>' + ${book.author.name} + '<br/>' + ${book.publisher.name}"/>
+			<td th:text="${book.category.name}"/>
+			<td>
+			<!-- TODO: insert URL to delete book" -->
+			<a th:text="#{common.delete}" href="">Delete</a>
+			<!-- TODO: insert URL to open book edit" -->
+			<a th:text="#{common.edit}" href="">Edit</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+

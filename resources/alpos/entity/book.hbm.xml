@@ -14,6 +14,10 @@
         <property name="publisherId" column="publisher_id" type="int"></property>
         <property name="categoryId" column="category_id" type="int"></property>
         <property name="releaseYear" column="release_year" type="int"></property>
+        
+        <many-to-one name = "author" class ="alpos.entity.Author" column = "author_id" insert="false" update="false"/>
+        <many-to-one name = "publisher" class ="alpos.entity.Publisher" column = "publisher_id" insert="false" update="false"/>
+        <many-to-one name = "category" class ="alpos.entity.Category" column = "category_id" insert="false" update="false"/>
     </class>
 
 </hibernate-mapping>

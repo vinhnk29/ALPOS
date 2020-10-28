@@ -2,7 +2,6 @@ package alpos.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 public class BookModel extends BaseModel {
     private Integer id;
@@ -15,7 +14,10 @@ public class BookModel extends BaseModel {
     @NotNull(message = "{book.validation.category_id.required}")
     private Integer categoryId;
     private Integer releaseYear;
-
+    private AuthorModel author;
+    private PublisherModel publisher;
+    private CategoryModel category;
+    
     public BookModel() {
 
     }
@@ -76,4 +78,25 @@ public class BookModel extends BaseModel {
     public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
     }
+    
+	public AuthorModel getAuthor() {
+		return author;
+	}
+	public void setAuthor(AuthorModel author) {
+		this.author = author;
+	}
+	public PublisherModel getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(PublisherModel publisher) {
+		this.publisher = publisher;
+	}
+	public CategoryModel getCategory() {
+		return category;
+	}
+	public void setCategory(CategoryModel category) {
+		this.category = category;
+	}
+
 }
+

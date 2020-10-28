@@ -1,14 +1,16 @@
 package alpos.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Publisher implements Serializable {
     private Integer id;
     private String  name;
     private String  address;
     private String  phoneNumber;
+    private List<Book> books;
 
-    public Publisher() {
+	public Publisher() {
 
     }
 
@@ -50,4 +52,13 @@ public class Publisher implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    
+    public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 }
