@@ -2,19 +2,16 @@ package alpos.service.imp;
 
 import alpos.dao.BookDAO;
 import alpos.entity.Book;
+import alpos.model.AuthorModel;
 import alpos.model.BookModel;
-import alpos.service.AuthorService;
+import alpos.model.CategoryModel;
+import alpos.model.PublisherModel;
 import alpos.service.BookService;
-import alpos.service.CategoryService;
-import alpos.service.PublisherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import alpos.dao.AuthorDAO;
 import alpos.dao.CategoryDAO;
 import alpos.dao.PublisherDAO;
-import model.AuthorModel;
-import model.CategoryModel;
-import model.PublisherModel;
 
 import java.util.ArrayList;
 import java.util.List;
