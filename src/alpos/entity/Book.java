@@ -11,10 +11,10 @@ public class Book implements Serializable {
     private Integer categoryId;
     private Integer releaseYear;
     private User user;
-	private Author author;
-    private Publisher publisher;
-    private Category category;
 
+    private Category category;
+    private Publisher publisher;
+    private Author author;
 
     public User getUser() {
         return user;

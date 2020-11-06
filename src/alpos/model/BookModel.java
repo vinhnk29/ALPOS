@@ -1,5 +1,9 @@
 package alpos.model;
 
+import alpos.entity.Author;
+import alpos.entity.Category;
+import alpos.entity.Publisher;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -14,10 +18,11 @@ public class BookModel extends BaseModel {
     @NotNull(message = "{book.validation.category_id.required}")
     private Integer categoryId;
     private Integer releaseYear;
-    private AuthorModel author;
+
     private PublisherModel publisher;
+    private AuthorModel  author;
     private CategoryModel category;
-    
+
     public BookModel() {
 
     }
