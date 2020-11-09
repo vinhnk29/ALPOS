@@ -55,8 +55,8 @@ public class UserController {
 	@GetMapping(value = "/users/{id}")
 	public String show(@PathVariable Integer id, Model model, HttpServletRequest request, Authentication authentication)
 			throws Exception {
-		model.addAttribute("user", userService.findUser(id));
 		System.out.println("Show user");
+		model.addAttribute("user", userService.findUser(id));
 		return "users/show";
 	}
 }

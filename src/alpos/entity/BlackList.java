@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class BlackList implements Serializable {
     private Integer id;
     private Integer reviewId;
+    private Integer userId;
 
     public BlackList(){
 
@@ -30,4 +31,12 @@ public class BlackList implements Serializable {
     public void setReviewId(Integer reviewId) {
         this.reviewId = reviewId;
     }
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 }

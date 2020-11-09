@@ -1,6 +1,9 @@
 package alpos.service.imp;
 
+import alpos.dao.RelationshipDAO;
+import alpos.dao.ReviewDAO;
 import alpos.dao.UserDAO;
+import alpos.entity.Review;
 import alpos.entity.User;
 import alpos.model.UserModel;
 import alpos.service.UserService;
@@ -14,56 +17,70 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImp implements UserService {
-    private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
+	private static Logger log = LoggerFactory.getLogger(UserServiceImp.class);
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    private UserServiceImp() {
-    }
-    
-    @Autowired
-    private UserDAO userDAO;
+	private UserServiceImp() {
+	}
 
-    public void setUserDao(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+	@Autowired
+	private UserDAO userDAO;
 
-    @Transactional
-    public UserModel addUser(UserModel userModel) throws Exception {
-        log.info("Adding the user in the database");
-        try {
-            User condition = new User();
-            condition.setId(userModel.getId());
-            condition.setName(userModel.getName());
-            condition.setEmail(userModel.getEmail());
-            condition.setPassword(passwordEncoder.encode(userModel.getPassword()));
-            User user = userDAO.makePersistent(condition);
-            userModel = new UserModel();
-            BeanUtils.copyProperties(user, userModel);
-            return userModel;
-        } catch (Exception e) {
-            log.error("An error occurred while adding the user details to the database", e);
-            throw e;
-        }
-    }
+	@Autowired
+	private ReviewDAO reviewDAO;
+	
+	@Autowired
+	private RelationshipDAO relationshipDAO;
 
-    public UserModel findUserByEmail(String email) {
+	public void setUserDao(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	
+	public void setReviewDao(ReviewDAO reviewDAO) {
+		this.reviewDAO = reviewDAO;
+	}
+	
+	public void setRelationshipDao(RelationshipDAO relationshipDAO) {
+		this.relationshipDAO = relationshipDAO;
+	}
 
-        try {
-            User user = userDAO.findUserByEmail(email);
-            UserModel userModel = null;
-            if (user != null) {
-                userModel = new UserModel();
-                BeanUtils.copyProperties(user, userModel);
-            }
-            return userModel;
-        } catch (Exception e) {
+	@Transactional
+	public UserModel addUser(UserModel userModel) throws Exception {
+		log.info("Adding the user in the database");
+		try {
+			User condition = new User();
+			condition.setId(userModel.getId());
+			condition.setName(userModel.getName());
+			condition.setEmail(userModel.getEmail());
+			condition.setPassword(passwordEncoder.encode(userModel.getPassword()));
+			User user = userDAO.makePersistent(condition);
+			userModel = new UserModel();
+			BeanUtils.copyProperties(user, userModel);
+			return userModel;
+		} catch (Exception e) {
+			log.error("An error occurred while adding the user details to the database", e);
+			throw e;
+		}
+	}
 
-            return null;
-        }
-    }
-    
+	public UserModel findUserByEmail(String email) {
+
+		try {
+			User user = userDAO.findUserByEmail(email);
+			UserModel userModel = null;
+			if (user != null) {
+				userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+			}
+			return userModel;
+		} catch (Exception e) {
+
+			return null;
+		}
+	}
+
 	public UserModel findUser(Integer id) {
 		log.info("Checking the user in the database");
 		try {
@@ -73,11 +90,21 @@ public class UserServiceImp implements UserService {
 				userModel = new UserModel();
 				BeanUtils.copyProperties(user, userModel);
 			}
+
+			Long reviewNumbers = reviewDAO.countReview(id);
+			userModel.setReviewNumbers(reviewNumbers);
+			
+			Long followers = relationshipDAO.countFollowers(id);
+			userModel.setFollowers(followers);
+			
+			Long followings = relationshipDAO.countFollowings(id);
+			userModel.setFollowings(followings);
+			
 			return userModel;
 		} catch (Exception e) {
 			log.error("An error occurred while fetching the user details from the database", e);
 			return null;
 		}
 	}
-        
+
 }
