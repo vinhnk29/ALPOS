@@ -9,7 +9,9 @@
 
     <bean id="userService" class="alpos.service.imp.UserServiceImp">
         <qualifier value="userService"/>
-        <property name="userDao" ref="userDao" />
+        <property name="userDao" ref="userDao"/>
+        <property name="reviewDao" ref="reviewDao"/>
+        <property name="relationshipDao" ref="relationshipDao"/>
     </bean>
 
     <bean id="authorService" class="alpos.service.imp.AuthorServiceImp">

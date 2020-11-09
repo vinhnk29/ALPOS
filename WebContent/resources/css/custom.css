@@ -427,3 +427,16 @@ span.picture {
     border: 0;
   }
 }
+
+element.style {
+}
+
+@media (min-width: 736px)
+.XjzKX {
+
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+
+    flex-grow: 1;
+    margin-right: 30px;
+}
