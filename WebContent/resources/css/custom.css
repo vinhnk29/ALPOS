@@ -82,11 +82,11 @@ footer {
 }
 
 footer a {
-  color: #555;
+  color: black;
 }
 
 footer a:hover {
-  color: #222;
+  color: #f44336;
 }
 
 footer small {
@@ -259,17 +259,6 @@ aside {
 }
 
 /* forms */
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
 
 #error_explanation {
   color: red;

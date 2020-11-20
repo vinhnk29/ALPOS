@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="com.spring.sample-0.0.1-SNAPSHOT.war">
+    <root id="archive" name="ALPOS-0.0.1-SNAPSHOT.war">
       <element id="artifact" artifact-name="com.spring.sample:war exploded" />
     </root>
   </artifact>

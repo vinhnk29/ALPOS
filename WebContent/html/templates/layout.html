@@ -7,6 +7,7 @@
   <title th:replace="${title}">[[#{meta.title}]]</title>
   <meta name="description" th:attr="content=#{meta.description}" />
   <meta name="keywords" th:attr="content=#{meta.keywords}" />
+  <meta charset="utf-8"/>
   <!-- <sec:csrfMetaTags ></sec:csrfMetaTags> -->
 	<!-- default header name is X-CSRF-TOKEN -->
 
@@ -119,6 +120,220 @@
       margin-left: 10%;
     }
 
+
+    /** Header style css **/
+    .footer {
+      display: flex;
+      flex-direction: row;
+      background-color: #f5dcdc;
+      margin-left: -6%;
+      margin-right: -6%;
+      height: 200px;
+      color: #222222;
+    }
+
+    footer a{
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: coral;
+      text-decoration: none;
+    }
+
+    .footer-title {
+      margin-bottom: 5%;
+    }
+
+    .footer-1 {
+      margin-top: 2%;
+      margin-left: 8%;
+    }
+
+    .footer-2 {
+      margin-top: 2%;
+      margin-left: 8%;
+    }
+
+    .footer-3 {
+      margin-top: 2%;
+      margin-left: 8%;
+    }
+
+    .footer-4 {
+      margin-top: 2%;
+      margin-top: 3%;
+      margin-left: 12%;
+    }
+
+    .footer-content-1 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-content-2{
+      display: flex;
+      flex-direction: column;
+      margin-left: 5%;
+    }
+
+
+    /** end **/
+
+
+    /** header **/
+    .header-logo img{
+      width: 50px;
+      height: auto;
+      margin-left: 90%;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      background-color: #f5dcdc;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: row;
+      margin-left: 53%;
+
+    }
+
+    .remember {
+      display: flex;
+      flex-direction: row;
+      margin-top: -2%;
+      color: whitesmoke;
+    }
+
+    .forgot {
+      margin-top: -2%;
+    }
+
+    .header1-1 {
+      margin-top: 2%;
+    }
+
+    .header1-2 {
+      margin-top: 2%;
+      margin-left: 5%;
+    }
+
+
+    .search {
+      width: 100%;
+      position: relative;
+      display: flex;
+    }
+
+    .searchTerm {
+      width: 100%;
+      border: 3px solid #00B4CC;
+      border-right: none;
+      padding: 5px;
+      height: 36px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9DBFAF;
+    }
+
+    .searchTerm:focus{
+      color: #00B4CC;
+    }
+
+    .searchButton {
+      width: 40px;
+      height: 36px;
+      border: 1px solid #00B4CC;
+      background: #00B4CC;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /*Resize the wrap to see the search bar change!*/
+    .wrap{
+      width: 15%;
+      position: absolute;
+      top: 38%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+    }
+
+    .header-icon{
+      margin-left: 70%;
+      margin-top: 0.7%;
+      width: 40%;
+    }
+
+
+    .header-icon-2{
+      margin-left: 4%;
+    }
+
+    .header-icon-3{
+      margin-left: 4%;
+    }
+
+    .header-icon-4{
+      margin-left: 4%;
+    }
+
+    .user-name {
+      list-style-type: none;
+      margin-left: -23%;
+      margin-top: 1%;
+      tab-size: 20px;
+    }
+
+    .header-cont{
+      margin-left: 55%;
+      display: flex;
+      margin-top: 0.2%;
+    }
+
+
+    .header-password{
+      margin-left: 1%;
+    }
+
+    .header-submit{
+      color: #008CBA;
+      margin-left: 1%;
+    }
+
+    .header-submit-cont{
+      transition-duration: 0.4s;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      border: 2px solid #008CBA;
+    }
+
+    .header-submit-cont:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+
+
+
+    /** login successful **/
+    .search {
+      display: flex;
+      flex-direction: row;
+      margin-left: 100%;
+      margin-top: 7%;
+      width: 200%;
+    }
+
+    .search input {
+        padding: 1;
+    }
+
   </style>
 </head>
 <body>
@@ -137,3 +352,5 @@
   </div>  
 </body>
 </html>
+
+
