@@ -85,6 +85,7 @@ public class BookServiceImp implements BookService {
             condition.setPublisherId(bookModel.getPublisherId());
             condition.setCategoryId(bookModel.getCategoryId());
             condition.setReleaseYear(bookModel.getReleaseYear());
+            condition.setImage(bookModel.getImage());
             Book book = bookDao.makePersistent(condition);
             bookModel = new BookModel();
             BeanUtils.copyProperties(book, bookModel);

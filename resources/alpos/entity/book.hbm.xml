@@ -14,6 +14,7 @@
         <property name="publisherId" column="publisher_id" type="int"></property>
         <property name="categoryId" column="category_id" type="int"></property>
         <property name="releaseYear" column="release_year" type="int"></property>
+        <property name="image" column="image" type="string" length="128"></property>
 
         <many-to-one name="author" class="alpos.entity.Author"
                      column="author_id" not-null="true" insert="false" update="false"/>

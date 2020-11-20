@@ -8,6 +8,8 @@ import alpos.service.AuthorService;
 import alpos.service.BookService;
 import alpos.service.CategoryService;
 import alpos.service.PublisherService;
+import alpos.uploader.ImageUpload;
+import alpos.uploader.ImageUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,10 @@ public class BookController {
     private AuthorService authorService;
 
     @Autowired
+    @Qualifier("imageUploader")
+    ImageUploader imageUploader;
+
+    @Autowired
     @Qualifier("categoryService")
     private CategoryService categoryService;
 
@@ -70,6 +76,10 @@ public class BookController {
     @PostMapping(value = "/books")
     public String create(@ModelAttribute("book") @Validated BookModel bookModel, BindingResult bindingResult,
                          Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+        ImageUpload imageUpload = imageUploader.uploadFile(bookModel.getFile());
+        if (imageUpload != null) {
+            bookModel.setUpload(imageUpload);
+        }
         if (bindingResult.hasErrors()) {
             logger.info("Returning register.jsp page, validate failed");
             return "books/add";

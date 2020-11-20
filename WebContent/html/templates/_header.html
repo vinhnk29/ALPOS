@@ -5,35 +5,55 @@
 <body>
   <header th:fragment="copy" class="navbar navbar-fixed-top navbar-inverse">
     
-	<div class="container">
-		<a id="logo" th:href="@{/home}" th:text="#{application.logo}">Sample App</a>
-		<nav>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a th:href="@{/home}" th:text="#{header.home}">Home</a></li>
-				<li><a th:href="@{/help}" th:text="#{header.help}">Help</a></li>
-				<th:block th:if="${#request.getSession().getAttribute('user')}">
-				<li th:text="${#request.getSession().getAttribute('user').name}"></li>
-				</th:block>
-				<th:block sec:authorize="!isAuthenticated()">
-				<li><a th:href="@{/login}" th:text="#{header.login}">Log in</a></li>
-				</th:block>
-				<th:block sec:authorize="isAuthenticated()">
-				<li><a th:href="@{/users}">Users</a></li>
-				<li class="dropdown" th:with="user=${#request.userPrincipal.principal.user}">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					    <span th:text="${#request.userPrincipal.principal.user.name}">Account</span>
-					    <b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a th:href="@{'/users/'+${user.id}}">Profile</a></li>
-						<li><a th:href="@{'/users/'+${user.id}+'/edit'}">Settings</a></li>
-						<li class="divider"></li>
-						<li><a th:href="@{/logout}">Sign Out</a></li>
-					</ul>
-				</li>
-				</th:block>
-			</ul>
-		</nav>
+	<div th:if="${#request.getSession().getAttribute('user') != null}" class="header" style="height: 50px">
+		<div class="header-logo">
+			<a><img rel="shortcut icon" src="https://ci6.googleusercontent.com/proxy/NUeaOc6jT6fr2LLX1ndfZFBhbDUbIfOscS_02Fp6wFKPL3oZULdjTZahEYgbuR8KVH0xCVGk56ZdtPh1_XPkAkNdmkPe2HgcYsOYnXbgeAM6Rk8ilCcI-gVSdxE42ZBhFY-WVwES8NMPlIdOzGja3QepIV7dDo8G=s0-d-e1-ft#https://www.freelogodesign.org/file/app/client/thumb/cdc53511-c82f-4035-b495-ae8767cccbff_200x200.png" ></a>
+		</div>
+
+		<div class="wrap">
+			<div class="search">
+				<input type="text" class="searchTerm" placeholder="What are you looking for?">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"><img src="https://www.flaticon.com/svg/static/icons/svg/751/751381.svg " style="height: 20px; width: 20px;"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="header-icon">
+			<a class="header-icon-1" href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/1946/1946488.svg" style="height: 30px; width: 30px;"></a>
+			<a class="header-icon-2" href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/2983/2983788.svg" style="height: 30px; width: 30px;"></a>
+			<a class="header-icon-3" href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/876/876183.svg" style="height: 30px; width: 30px;"></a>
+			<a class="header-icon-4" href="#"><img src="https://www.flaticon.com/svg/static/icons/svg/857/857975.svg" style="height: 30px; width: 30px;"></a>
+		</div>
+
+		<div class="user-name">
+			<li th:text="${#request.getSession().getAttribute('user').name}"></li>
+		</div>
+	</div>
+
+	<div th:if="${#request.getSession().getAttribute('user') == null}" class="header" style="height: 50px">
+		<div class="header-logo">
+			<a><img rel="shortcut icon" src="https://ci6.googleusercontent.com/proxy/NUeaOc6jT6fr2LLX1ndfZFBhbDUbIfOscS_02Fp6wFKPL3oZULdjTZahEYgbuR8KVH0xCVGk56ZdtPh1_XPkAkNdmkPe2HgcYsOYnXbgeAM6Rk8ilCcI-gVSdxE42ZBhFY-WVwES8NMPlIdOzGja3QepIV7dDo8G=s0-d-e1-ft#https://www.freelogodesign.org/file/app/client/thumb/cdc53511-c82f-4035-b495-ae8767cccbff_200x200.png" ></a>
+		</div>
+
+		<div class="header-cont">
+			<div class="header-email">
+				<input id="header-email" type="email" name="user[email]" aria-label="Email address" placeholder="Email address">
+				<br>
+				<input type="checkbox" id="remember_me" name="remember_me" checked="">
+				<label for="remember_me" class="greyText" style="color: darkgray;">Remember me</label>
+			</div>
+
+			<div class="header-password">
+				<input value="" aria-label="Password" placeholder="Password" type="password" name="user[password]" id="user_password">
+				<br>
+				<a class="greyText" id="header-password" rel="nofollow" href="#" style="color: darkgray;" >Forgot it?</a>
+			</div>
+
+			<div class="header-submit" >
+				<input type="submit" value="Sign in" class="header-submit-cont" >
+			</div>
+		</div>
 	</div>
   </header>
 </body>

@@ -3,16 +3,59 @@
 <head></head>
 <body>
   <footer th:fragment="copy" class="footer">
-    <small>
-      The <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html" target="_blank">Spring MVC</a> documentation<br>
-      [[#{footer.copyright}]]
-    </small>
-    <nav>
-      <ul>
-        <li><a th:href="@{/about}" th:text="#{footer.about}">About</a></li>
-        <li><a th:href="@{/contact}" th:text="#{footer.contact}">Contact</a></li>
-      </ul>
-    </nav>
+
+      <div class="footer-1">
+        <div class="footer-title">
+          <h4><b>COMPANY</b></h4>
+        </div>
+        <div class="footer-content-1">
+          <a th:href="@{/about}" th:text="#{footer.about}">About us</a></li>
+          <a th:href="@{/careers}" th:text="#{footer.careers}">Careers</a></li>
+          <a th:href="@{/terms}" th:text="#{footer.terms}">Terms</a></li>
+          <a th:href="@{/ads}" th:text="#{footer.ads}">Interest Based Ads</a></li>
+          <a th:href="@{/help}" th:text="#{footer.help}">Help</a></li>
+        </div>
+
+      </div>
+
+      <div class="footer-2">
+        <div class="footer-title">
+          <h4><b>WORK WITH US</b></h4>
+        </div>
+        <div class="footer-content-2">
+          <a th:href="@{/authors}" th:text="#{footer.authors}">Authors</a></li>
+          <a th:href="@{/advertise}" th:text="#{footer.advertise}">Advertise</a></li>
+          <a th:href="@{/adsAuthor}" th:text="#{footer.adsAuthor}">Authors & ads blog</a></li>
+          <a th:href="@{/api}" th:text="#{footer.api}">API</a></li>
+        </div>
+
+      </div>
+
+      <div class="footer-3">
+        <div class="footer-title">
+          <h4><b>CONNECT</b></h4>
+        </div>
+        <div class="footer-content-3">
+          <a th:href="@{/}"><img src="https://s.gr-assets.com/assets/site_footer/footer_facebook-ea4ab848f8e86c5f5c98311bc9495a1b.svg"></a></li>
+          <a th:href="@{/}"><img src="https://s.gr-assets.com/assets/site_footer/footer_twitter-126b3ee80481a763f7fccb06ca03053c.svg"></a></li>
+          <a th:href="@{/}"><img src="https://s.gr-assets.com/assets/site_footer/footer_instagram-d59e3887020f12bcdb12e6c539579d85.svg"></a></li>
+          <a th:href="@{/}"><img src="https://s.gr-assets.com/assets/site_footer/footer_linkedin-5b820f4703eff965672594ef4d10e33c.svg"></a></li>
+        </div>
+
+      </div>
+
+      <div class="footer-4">
+        <div>
+          <a th:href="@{/}"><img src="https://s.gr-assets.com/assets/app/badge-ios-desktop-homepage-6ac7ae16eabce57f6c855361656a7540.svg"></a></li>
+          <a th:href="@{/}"><img style="width: 140px; height: 40px;" src="https://s.gr-assets.com/assets/app/badge-android-desktop-home-2x-e31514e1fb4dddecf9293aa526a64cfe.png"></a></li>
+        </div>
+        <div>
+          <p>
+            © 2020 ALPOS, Inc.
+          </p>
+        </div>
+      </div>
+
   </footer> 
 </body>
 </html>

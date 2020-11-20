@@ -30,7 +30,7 @@ public class StaticPagesController {
 ////		return "home.page";
 //	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = {"/home","/"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "static_pages/home";

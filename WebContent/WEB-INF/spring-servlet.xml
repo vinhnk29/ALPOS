@@ -41,10 +41,10 @@
 	      p:modulesToInstall="com.fasterxml.jackson.module.paramnames.ParameterNamesModule"/>
 	
 	<bean id="xmlMapper" parent="objectMapper" p:createXmlMapper="true"/>
-	
 
+	<context:component-scan base-package="alpos.configuration" />
 	<context:component-scan base-package="alpos.controller" />
-	
+
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 	    <property name="mediaTypes">
 	        <value>
@@ -60,6 +60,7 @@
 	
 	<!-- resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/images/**" location="file://${file.upload-dir}" />
 	<mvc:resources mapping="/webjars/**" location="/webjars/" />
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -73,8 +74,10 @@
 		<property name="cookieName" value="myAppLocaleCookie" />
 		<property name="cookieMaxAge" value="3600" />
 	</bean>
-	
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"/>
+	</bean>
 	
 	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<qualifier value="passwordEncoder"/>
@@ -177,12 +180,14 @@
 	    <set>
 	      <!-- Note the package would change to 'springsecurity[3|4]' if you are using that version -->
 	      <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
+			<bean  class="alpos.util.ViewSupportDialect"/>
 	    </set>
 	  </property>
 	</bean>
     
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
   		<property name="templateEngine" ref="templateEngine" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
   		<!-- NOTE 'order' and 'viewNames' are optional -->
   		<property name="order" value="1" />
   		<!-- <property name="viewNames" value="*.html,*.xhtml" /> -->
