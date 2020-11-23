@@ -9,7 +9,7 @@
 
 	<table style="width: 70%">
 		<tr>
-			<th><a href=https://www.w3schools.com/tags/tag_a.asp><img src="https://www.w3schools.com/tags/img_girl.jpg" width="100" height="120"></th>
+			<th><a href=https://www.w3schools.com/tags/tag_a.asp><img style="width: 70%; height: auto;" th:if="${user.attached}" th:src="${#viewSupport.getImageUrl(user.image)}" alt=""></th>
 			<th>[[${user.name}]]</th>
 			<th>Birthday: [[${user.dateOfBirth}]]</th>
 			<th><a href=https://www.w3schools.com/tags/tag_a.asp>Edit Profile</a></th>

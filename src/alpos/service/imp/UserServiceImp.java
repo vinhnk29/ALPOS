@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -104,6 +105,23 @@ public class UserServiceImp implements UserService {
 		} catch (Exception e) {
 			log.error("An error occurred while fetching the user details from the database", e);
 			return null;
+		}
+	}
+
+	@Transactional
+	public UserModel editUser(UserModel userModel) throws Exception {
+		log.info("Updating the user in the database");
+		try {
+			User user = userDAO.find(userModel.getId(), true);
+			user.setName(userModel.getName());
+			user.setDateOfBirth(userModel.getDateOfBirth());
+			user.setEmail(userModel.getEmail());
+			user.setImage(userModel.getImage());
+			userDAO.makePersistent(user);
+			return userModel;
+		} catch (Exception e) {
+			log.error("An error occurred while updating the user details to the database", e);
+			throw e;
 		}
 	}
 

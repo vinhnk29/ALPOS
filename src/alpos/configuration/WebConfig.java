@@ -12,6 +12,8 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.time.format.DateTimeFormatter;
+
 @Configuration
 @EnableWebMvc
 @PropertySource("classpath:application.properties")
@@ -31,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
-        registrar.setUseIsoFormat(true);
+        registrar.setDateFormatter(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         registrar.registerFormatters(registry);
     }
 

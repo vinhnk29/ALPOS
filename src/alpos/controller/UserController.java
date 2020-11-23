@@ -1,10 +1,14 @@
 package alpos.controller;
 
+import alpos.interceptor.Flash;
 import alpos.model.UserModel;
 import alpos.service.UserService;
+import alpos.uploader.ImageUpload;
+import alpos.uploader.ImageUploader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,6 +35,13 @@ public class UserController {
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
+
+	@Autowired
+	@Qualifier("imageUploader")
+	ImageUploader imageUploader;
+
+	@Resource
+	Flash flash;
 
 	@GetMapping(value = { "/users/add", "/signup" })
 	public String add(Locale locale, Model model) {
@@ -58,5 +66,30 @@ public class UserController {
 		System.out.println("Show user");
 		model.addAttribute("user", userService.findUser(id));
 		return "users/show";
+	}
+
+	@GetMapping(value = "/users/{id}/edit")
+	public String edit(@PathVariable Integer id, Model model) {
+		model.addAttribute("user", userService.findUser(id));
+		return "users/edit";
+	}
+
+	@PutMapping(value = "/users/{id}/edit")
+	public String update(@ModelAttribute("user") @Validated UserModel userModel, BindingResult bindingResult,
+						 Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+		ImageUpload imageUpload = imageUploader.uploadFile(userModel.getFile());
+		if (imageUpload != null) {
+			userModel.setUpload(imageUpload);
+		}
+
+		if (bindingResult.hasErrors()) {
+			logger.info("Returning edit.jsp page, validate failed");
+			return "users/edit";
+		}
+		UserModel user = userService.editUser(userModel);
+		// Add message to flash scope
+		flash.success("user.update.success");
+		flash.keep();
+		return "redirect: " + request.getContextPath() + "/users/" + user.getId();
 	}
 }
