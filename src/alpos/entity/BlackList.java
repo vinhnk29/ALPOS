@@ -6,6 +6,7 @@ public class BlackList implements Serializable {
     private Integer id;
     private Integer reviewId;
     private Integer userId;
+    private User user;
 
     public BlackList(){
 
@@ -38,5 +39,13 @@ public class BlackList implements Serializable {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

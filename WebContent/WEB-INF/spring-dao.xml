@@ -35,4 +35,8 @@
 		class="alpos.dao.imp.RelationshipDAOImp">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+	
+	<bean id="blackListDao" class="alpos.dao.imp.BlackListDAOImp">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
 </beans>

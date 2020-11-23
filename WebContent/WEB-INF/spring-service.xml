@@ -36,5 +36,10 @@
     	<property name="categoryDao" ref="categoryDao" />
     	<property name="publisherDao" ref="publisherDao" />
     </bean>
+    
+     <bean id="reviewService" class="alpos.service.imp.ReviewServiceImp">
+		<qualifier value="reviewService"/>
+    	<property name="blackListDao" ref="blackListDao" />
+    </bean>
  
 </beans>

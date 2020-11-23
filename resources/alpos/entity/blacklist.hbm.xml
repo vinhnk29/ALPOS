@@ -10,6 +10,11 @@
     	</id>
 
 		<property name="reviewId" column="review_id" type="int"></property>
+		<property name="userId" column="user_id" type="int"></property>
+		
+		<many-to-one name="user" class="alpos.entity.User"
+        column="user_id" not-null="true" insert="false" update="false"/>
+		
   </class>
 
 </hibernate-mapping>  

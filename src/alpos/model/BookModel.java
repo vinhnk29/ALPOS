@@ -1,8 +1,5 @@
 package alpos.model;
 
-import alpos.entity.Author;
-import alpos.entity.Category;
-import alpos.entity.Publisher;
 import alpos.uploader.ImageUpload;
 import alpos.uploader.cloudinary.CloudinaryImageUpload;
 import org.springframework.util.StringUtils;
@@ -143,4 +140,3 @@ public class BookModel extends BaseModel {
 
 
 }
-
