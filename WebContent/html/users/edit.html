@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+        th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{user.edit.title}">User Edit Profile</title>
+</head>
+<body>
+    <h1 th:text="#{user.edit.title}">Edit User</h1>
+    <form th:method="PUT" th:action="@{'/users/'+${user.id}+'/edit'}" th:object="${user}" th:fragment="form (title, action, method)" enctype="multipart/form-data">
+    <div class="edit-container">
+        <div class="edit-left">
+            <img style="width: 70%; height: auto;" th:if="${user.attached}" th:src="${#viewSupport.getImageUrl(user.image)}" alt="">
+            <div class="field">
+                <input type="file" th:field="*{file}" id="file"/>
+            </div>
+        </div>
+        <hr class="linee" style="width: 1px; height: auto; display: inline-block; border-left: 1px solid gray;">
+        <div class="edit-right">
+                <div th:replace="shared/_error_messages :: copy"></div>
+
+                <label th:for="${#ids.next('name')}" th:text="#{user.form.name}">Name</label>
+                <input type="text" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name')}? 'fieldError'" />
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Incorrect name</p>
+                <br>
+                <label th:for="${#ids.next('dateOfBirth')}" th:text="#{user.form.date}">Date Of Birth</label>
+                <input type="text" th:field="*{dateOfBirth}" class="form-control" th:classappend="${#fields.hasErrors('dateOfBirth')}? 'fieldError'" />
+                <p th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="error">Incorrect date of birth</p>
+                <br>
+                <label th:for="${#ids.next('email')}" th:text="#{user.form.email}">Email</label>
+                <input type="email" th:field="*{email}" class="form-control" th:classappend="${#fields.hasErrors('email')} ? 'fieldError'" />
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Incorrect email</p>
+                <br>
+                <input type="submit" value="Register" th:attr="value=#{user.edit.submit}" class="btn btn-primary"/>
+        </div>
+    </div>
+    </form>
+</body>

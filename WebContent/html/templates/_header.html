@@ -35,17 +35,17 @@
 		<div class="header-logo">
 			<a><img rel="shortcut icon" src="https://ci6.googleusercontent.com/proxy/NUeaOc6jT6fr2LLX1ndfZFBhbDUbIfOscS_02Fp6wFKPL3oZULdjTZahEYgbuR8KVH0xCVGk56ZdtPh1_XPkAkNdmkPe2HgcYsOYnXbgeAM6Rk8ilCcI-gVSdxE42ZBhFY-WVwES8NMPlIdOzGja3QepIV7dDo8G=s0-d-e1-ft#https://www.freelogodesign.org/file/app/client/thumb/cdc53511-c82f-4035-b495-ae8767cccbff_200x200.png" ></a>
 		</div>
-
+		<form th:method="POST" th:action="@{/login}" enctype="utf8">
 		<div class="header-cont">
 			<div class="header-email">
-				<input id="header-email" type="email" name="user[email]" aria-label="Email address" placeholder="Email address">
+				<input id="header-email" type="email" name="email" aria-label="Email address" placeholder="Email address">
 				<br>
 				<input type="checkbox" id="remember_me" name="remember_me" checked="">
 				<label for="remember_me" class="greyText" style="color: darkgray;">Remember me</label>
 			</div>
 
 			<div class="header-password">
-				<input value="" aria-label="Password" placeholder="Password" type="password" name="user[password]" id="user_password">
+				<input value="" aria-label="Password" placeholder="Password" type="password" name="password" id="user_password">
 				<br>
 				<a class="greyText" id="header-password" rel="nofollow" href="#" style="color: darkgray;" >Forgot it?</a>
 			</div>
@@ -53,7 +53,8 @@
 			<div class="header-submit" >
 				<input type="submit" value="Sign in" class="header-submit-cont" >
 			</div>
-		</div>
+
+		</div></form>
 	</div>
   </header>
 </body>

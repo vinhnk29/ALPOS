@@ -1,12 +1,18 @@
 package alpos.model;
 
+import alpos.uploader.ImageUpload;
+import alpos.uploader.cloudinary.CloudinaryImageUpload;
 import alpos.validator.FieldMatch;
 import alpos.validator.NullOrNotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @FieldMatch.List({
@@ -17,7 +23,8 @@ public class UserModel {
 	@NotEmpty(message = "{user.validation.name.required}")
 	@Size(max = 64, message = "{user.validation.name.max}")
 	private String name;
-	@NotEmpty(message = "{user.validation.email.required}")
+	@NotNull(message = "{user.validation.date.required}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	@Email(message = "{pattern.email}")
 	private String email;
@@ -29,6 +36,25 @@ public class UserModel {
 	private Long reviewNumbers = null;
 	private Long followers = null;
 	private Long followings = null;
+
+	private MultipartFile file;
+	private String image;
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public UserModel() {
 
@@ -112,5 +138,22 @@ public class UserModel {
 
 	public void setFollowings(Long followings) {
 		this.followings = followings;
+	}
+
+
+	public boolean isAttached() {
+		return StringUtils.hasText(image);
+	}
+
+	public ImageUpload getUpload() {
+		ImageUpload file = new CloudinaryImageUpload();
+		if (StringUtils.hasText(image)) {
+			file.setStoredPath(image);
+		}
+		return file;
+	}
+
+	public void setUpload(ImageUpload file) {
+		this.image = file.getStoredPath();
 	}
 }

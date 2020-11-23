@@ -11,6 +11,15 @@ public class User implements Serializable {
     private String email;
     private String password;
     private List<Book> books;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public List<Book> getBooks() {
         return books;
