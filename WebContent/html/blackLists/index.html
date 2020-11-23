@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="templates/layout :: common_header(~{::title},~{})">
+  <title th:text="#{blackList.index.title}">Blacklisted Reviews</title>
+</head>
+<body>
+  <h2 th:text="#{blackList.index.all}">All Blacklisted Reviews</h2>
+
+  <ul class="blackLists">
+    <li th:each="blackList : ${blackLists}" th:id="'blackList_'+${blackList.id}">
+      <a th:href="@{'/blackLists/'+${blackList.id}}" th:text="${blackList.id}"></a>
+
+    </li>
+  </ul>
+  <th:block th:if="${blackLists.totalPages > 1}">
+    <div th:if="${blackLists.totalPages > 1}" th:replace="~{shared/_pagination :: copy(${blackLists}, '/blackLists')}"></div>
+    </th:block>
+</body>
+</html>

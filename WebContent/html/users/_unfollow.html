@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>		
+
+
+		<th:block th:fragment="aaa (user)">
+  		<form th:method="POST" th:action="@{/unfollow}">
+  		<input type="hidden" th:name="followed_id" th:value="${user.id}"/>
+		  <input type="submit" value="UnFollow" th:attr="value=#{user.unfollow}" class="btn btn-primary"/>
+	    </form>
+	    </th:block>
+
+</body>
+</html>

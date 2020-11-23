@@ -39,6 +39,7 @@
 				<value>alpos/entity/publisher.hbm.xml</value>
 				<value>alpos/entity/review.hbm.xml</value>
 				<value>alpos/entity/relationship.hbm.xml</value>
+				<value>alpos/entity/blacklist.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
