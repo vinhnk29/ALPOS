@@ -6,6 +6,11 @@ import org.springframework.data.domain.Page;
 
 import alpos.model.BlackListModel;
 
+import alpos.model.ReviewModel;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+
 public interface ReviewService {
 	
 	public void blackList(Integer reviewId, Integer userId) throws Exception;
@@ -13,4 +18,6 @@ public interface ReviewService {
 	public List<BlackListModel> findBlackListedReviewByUserId(Integer userId);
 	
 	public Page<BlackListModel> paginate(BlackListModel blackListModel);
+    public List<ReviewModel> findAll();
+    public Page<ReviewModel> paginate(ReviewModel reviewModel);
 }

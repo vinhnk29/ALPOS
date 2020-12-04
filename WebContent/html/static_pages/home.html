@@ -4,13 +4,57 @@
   <title th:text="#{home.title}">Home</title>
 </head>
 <body>
-<div class="center jumbotron">
-  <h1 th:text="#{home.welcome}">Home</h1>
-  <h2>
-    This is the home page for the
-    <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html" target="_blank">Spring MVC Tutorial</a> sample application.
-  </h2>
-  <a th:href="@{/signup}" th:text="#{home.signup}" class="btn btn-lg btn-primary">Sign up now!</a>
-</div>
+  <div th:if="${#request.getSession().getAttribute('user') != null}" class="home-page-1">
+    <div class="home-left">
+      <h4>NEWS & INTERVIEWS</h4>
+      <a href="#">ALPOS Members Suggest: Favorite Very Quick Reads</a>
+      <a href="#"><img src="https://images.gr-assets.com/blogs/1603316856p7/1976.jpg" style="margin-top: 5%; width: 100%"></a>
+      <hr style="width: 100%; height:auto; border-top: 1px solid darkgrey; margin-top: 15%; margin-bottom: 10%;">
+      <h4>RECOMMENDATIONS</h4>
+      <div class="home-left-1">
+        <div class="profile-image" style="width: 50%;">
+          <img style="width: 100%; height: auto;" th:if="${book.attached}" th:src="${#viewSupport.getImageUrl(book.image)}" alt="">
+        </div>
+        <div class="user-settings" style="margin-left: 5%; text-align: center; margin-top: 5%;">
+          <h3 style=" font-size: 30px;">[[${book.name}]]</h3>
+          <h3 style=" font-size: 20px;">By [[${book.author.name}]] </h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-right">
+      <ul class="reviews">
+        <th:block th:each="review : ${reviews.content}">
+          <li th:replace="~{reviews/_review :: copy(${review})}"></li>
+        </th:block>
+      </ul>
+      <th:block th:if="${reviews.totalPages > 1}">
+        <div th:if="${reviews.totalPages > 1}" th:replace="~{shared/_pagination :: copy(${reviews},'/home')}"></div>
+      </th:block>
+    </div>
+  </div>
+
+  <div th:if="${#request.getSession().getAttribute('user') == null}" class="home-page-2">
+      <div class="home-image1">
+        <img class="homepage-main-img" src="https://images.gr-assets.com/misc/1576517815-1576517815_goodreads_misc.gif" >
+      </div>
+    <div class="home-info">
+      <h1>ALPOS</h1>
+      <h4>ALPOS is the site for readers and book recommendations. Our mission is to help people find and share books they love. ALPOS launched in November 2020.</h4>
+    </div>
+    <hr style="width: 100%; height:auto; border-top: 1px solid darkgrey; margin-top: 2%; margin-bottom: 2%;">
+    <div class="home-3">
+      <div class="home-3-1">
+        <h3>Deciding what to read next?</h3>
+        <p>You are in the right place. Tell us what titles or genres you have enjoyed in the past, and we will give you surprisingly insightful recommendations.</p>
+      </div>
+      <hr style="width: 1px; height: auto; display: inline-block; border-left: 1px solid gray;">
+      <div class="home-3-2">
+        <h3>What are your friends reading?</h3>
+        <p>Chances are your friends are discussing their favorite (and least favorite) books on ALPOS.</p>
+      </div>
+    </div>
+  </div>
+  </div>
 </body>
 </html>

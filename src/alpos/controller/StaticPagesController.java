@@ -1,18 +1,41 @@
 package alpos.controller;
 
 import java.util.Locale;
+import java.util.Optional;
+
+import alpos.model.BookModel;
+import alpos.model.ReviewModel;
+import alpos.model.UserModel;
+import alpos.service.BookService;
+import alpos.service.ReviewService;
+import alpos.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class StaticPagesController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StaticPagesController.class);
 
+	@Autowired
+	@Qualifier("bookService")
+	BookService bookService;
+
+	@Autowired
+	@Qualifier("reviewService")
+	ReviewService reviewService;
+
+	@Autowired
+	@Qualifier("userService")
+	UserService userService;
 
 
 	/**
@@ -31,8 +54,14 @@ public class StaticPagesController {
 //	}
 
 	@RequestMapping(value = {"/home","/"}, method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		
+	public String home(Locale locale, Model model, @RequestParam(name = "page", required = false) Optional<Integer> page) {
+		model.addAttribute("book", bookService.findRecommendBook());
+		ReviewModel reviewModel = new ReviewModel();
+		reviewModel.setUserId(4);
+		reviewModel.setPage(page.orElse(1));
+		Page<ReviewModel> reviews = reviewService.paginate(reviewModel);
+		model.addAttribute("reviews", reviews);
+
 		return "static_pages/home";
 	}
 	

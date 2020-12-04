@@ -321,6 +321,8 @@
 
 
 
+
+
     /** login successful **/
     .search {
       display: flex;
@@ -365,6 +367,92 @@
       margin-left: 10%;
     }
 
+    /* Home page */
+
+
+    .home-page-1 {
+      display: flex;
+      flex-direction: row;
+      margin-left: -1%;
+      width: 105%;
+    }
+
+    .home-page-2 {
+      display: flex;
+      flex-direction: column;
+      margin-left: -1%;
+      width: 105%;
+    }
+
+    .home-left{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-top: 5%;
+    }
+
+    .home-right {
+      display: flex;
+      flex-direction: column;
+      margin-top: 5%;
+      margin-left: 10%;
+    }
+
+    ul.reviews {
+      list-style-type: none;
+      height: 100%;
+    }
+
+    .home-2-img {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .list-review {
+      margin-bottom: 8%;
+      width: 95%;
+      padding: 5%;
+      border: 1px solid grey;
+      background-color: whitesmoke;
+      box-shadow: 3px 3px pink;
+      border-radius: 10px;
+    }
+
+
+
+
+
+    .home-image1 {
+      margin-left: -3%;
+    }
+
+    img.homepage-main-img {
+      height: 400px;
+      width: 100%;
+    }
+
+    .home-info{
+      margin-top: 2%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .home-3{
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+    }
+
+    .home-3-1{
+      width: 50%;
+      margin-right: 2%;
+    }
+
+    .home-left-1 {
+      display: flex;
+      flex-direction: row;
+    }
   </style>
 </head>
 <body>
@@ -374,12 +462,12 @@
     </button> -->
 
   </div>
-  <header th:replace="templates/_header :: copy"></header>     
+  <header th:replace="templates/_header :: copy"></header>
   <div class="container">
     <div th:replace="${content}">
         <p>Layout content</p>
     </div>
-    <footer th:replace="templates/_footer :: copy"></footer> 
+    <footer th:replace="templates/_footer :: copy"></footer>
   </div>  
 </body>
 </html>

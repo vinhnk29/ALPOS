@@ -25,6 +25,12 @@
         <many-to-one name="category" class="alpos.entity.Category"
                      column="category_id" not-null="true" insert="false" update="false"/>
 
+        <list name = "reviews" cascade="all" lazy="true" inverse="false" >
+            <key column = "book_id"/>
+            <list-index column = "id" base="1" />
+            <one-to-many class="alpos.entity.Review"/>
+        </list>
+
     </class>
 
 </hibernate-mapping>

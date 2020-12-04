@@ -1,8 +1,19 @@
 package alpos.model;
 
+import java.util.List;
+
 public class AuthorModel extends BaseModel {
     private Integer id;
     private String  name;
+    private List<BookModel> books;
+
+    public List<BookModel> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookModel> books) {
+        this.books = books;
+    }
 
     public AuthorModel(){
 

@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class BookModel extends BaseModel {
     private Integer id;
@@ -25,6 +26,15 @@ public class BookModel extends BaseModel {
     private AuthorModel  author;
     private CategoryModel category;
     private String image;
+    private List<ReviewModel> reviews;
+
+    public List<ReviewModel> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewModel> reviews) {
+        this.reviews = reviews;
+    }
 
     public String getImage() {
         return image;

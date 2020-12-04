@@ -37,6 +37,7 @@
 				<value>alpos/entity/author.hbm.xml</value>
 				<value>alpos/entity/category.hbm.xml</value>
 				<value>alpos/entity/publisher.hbm.xml</value>
+				<value>alpos/entity/rating.hbm.xml</value>
 				<value>alpos/entity/review.hbm.xml</value>
 				<value>alpos/entity/relationship.hbm.xml</value>
 				<value>alpos/entity/blacklist.hbm.xml</value>
