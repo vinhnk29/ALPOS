@@ -9,7 +9,6 @@
   <ul class="blackLists">
     <li th:each="blackList : ${blackLists}" th:id="'blackList_'+${blackList.id}">
       <a th:href="@{'/blackLists/'+${blackList.id}}" th:text="${blackList.id}"></a>
-
     </li>
   </ul>
   <th:block th:if="${blackLists.totalPages > 1}">

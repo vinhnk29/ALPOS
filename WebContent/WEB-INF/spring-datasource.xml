@@ -41,6 +41,8 @@
 				<value>alpos/entity/review.hbm.xml</value>
 				<value>alpos/entity/relationship.hbm.xml</value>
 				<value>alpos/entity/blacklist.hbm.xml</value>
+				<value>alpos/entity/comment.hbm.xml</value>
+				<!-- <value>alpos/entity/reviewcomment.hbm.xml</value> -->
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -2,14 +2,8 @@ package alpos.dao.imp;
 
 import alpos.dao.BookDAO;
 import alpos.entity.Book;
-import alpos.entity.Rating;
-import io.netty.util.internal.ThreadLocalRandom;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.stereotype.Repository;

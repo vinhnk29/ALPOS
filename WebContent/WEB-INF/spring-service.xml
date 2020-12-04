@@ -43,5 +43,11 @@
          <property name="reviewDao" ref="reviewDao" />
      </bean>
 
+    
+         <bean id="commentService" class="alpos.service.imp.CommentServiceImp">
+		<qualifier value="commentService"/>
+		<property name="reviewDao" ref="reviewDao" />
+    	<property name="userDao" ref="userDao" />
+    </bean>
  
 </beans>
