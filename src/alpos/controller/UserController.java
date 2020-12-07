@@ -1,6 +1,7 @@
 package alpos.controller;
 
 import alpos.interceptor.Flash;
+import alpos.model.CommentModel;
 import alpos.model.UserModel;
 import alpos.service.UserService;
 import alpos.uploader.ImageUpload;
@@ -65,6 +66,7 @@ public class UserController {
 			throws Exception {
 		System.out.println("Show user");
 		model.addAttribute("user", userService.findUser(id));
+		model.addAttribute("comment", new CommentModel());
 		return "users/show";
 	}
 
