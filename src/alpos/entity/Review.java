@@ -10,6 +10,15 @@ public class Review implements Serializable {
     private String  content;
     private User user;
     private Book book;
+    private Hastag hastag;
+
+    public Hastag getHastag() {
+        return hastag;
+    }
+
+    public void setHastag(Hastag hastag) {
+        this.hastag = hastag;
+    }
 
     public Book getBook() {
         return book;

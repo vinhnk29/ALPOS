@@ -135,4 +135,26 @@ public class ReviewServiceImp implements ReviewService {
         }
     }
 
+    @Transactional
+    public ReviewModel addReview(ReviewModel reviewModel) throws Exception {
+        log.info("Adding the review in the database");
+        try {
+            Review condition = new Review();
+            condition.setId(reviewModel.getId());
+            condition.setUserId(reviewModel.getUserId());
+            condition.setBookId(reviewModel.getBookId());
+            condition.setHastagId(reviewModel.getHastagId());
+            condition.setContent(reviewModel.getContent());
+            Review review = reviewDAO.makePersistent(condition);
+            reviewModel = new ReviewModel();
+            BeanUtils.copyProperties(review, reviewModel);
+            return reviewModel;
+        } catch (Exception e) {
+            log.error("An error occurred while adding the review details to the database", e);
+            throw e;
+        }
+    }
+
+
+
 }

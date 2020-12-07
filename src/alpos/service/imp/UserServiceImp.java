@@ -5,6 +5,7 @@ import alpos.dao.ReviewDAO;
 import alpos.dao.UserDAO;
 import alpos.entity.Review;
 import alpos.entity.User;
+import alpos.model.BookModel;
 import alpos.model.UserModel;
 import alpos.service.UserService;
 import org.slf4j.Logger;
@@ -15,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -123,6 +127,23 @@ public class UserServiceImp implements UserService {
 			log.error("An error occurred while updating the user details to the database", e);
 			throw e;
 		}
+	}
+
+	@Transactional(readOnly = true)
+	public List<UserModel> findAll() {
+		log.info("Fetching all users in the database");
+		List<UserModel> userModelList = new ArrayList<UserModel>();
+		try {
+			List<User> userList = userDAO.findAll();
+			for (User user : userList) {
+				UserModel userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+				userModelList.add(userModel);
+			}
+		} catch (Exception e) {
+			log.error("An error occurred while fetching all users from the database", e);
+		}
+		return userModelList;
 	}
 
 }

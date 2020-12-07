@@ -11,6 +11,15 @@ public class ReviewModel extends BaseModel{
     private String  content;
     private UserModel user;
     private BookModel book;
+    private HastagModel hastag;
+
+    public HastagModel getHastag() {
+        return hastag;
+    }
+
+    public void setHastag(HastagModel hastag) {
+        this.hastag = hastag;
+    }
 
     public BookModel getBook() {
         return book;
