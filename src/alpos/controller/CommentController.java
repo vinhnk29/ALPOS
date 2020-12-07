@@ -48,11 +48,13 @@ public class CommentController {
 	@PostMapping(value = "/comments/add")
 	public String create(@ModelAttribute("comment") @Validated CommentModel commentModel, BindingResult bindingResult,
 			Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
 		if (bindingResult.hasErrors()) {
 			logger.info("Returning register.jsp page, validate failed");
-			return "users/add";
+			model.addAttribute("user", userService.findUser(userModel.getId()));
+			model.addAttribute("comment", commentModel);
+			return "users/show";
 		}
-		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
 		commentModel.setUserId(userModel.getId());
 		CommentModel comment = commentService.addComment(commentModel);
 		return "static_pages/home";

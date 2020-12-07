@@ -1,12 +1,12 @@
 package alpos.model;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public class CommentModel extends BaseModel {
 	private Integer id;
 	private Integer reviewId;
 	private Integer userId;
-	@NotNull(message = "{book.validation.author_id.required}")
+	@NotEmpty(message = "{comment.validation.content.required}")
 	private String content;
 
 	public Integer getId() {
