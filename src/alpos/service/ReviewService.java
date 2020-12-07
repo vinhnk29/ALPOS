@@ -20,4 +20,5 @@ public interface ReviewService {
 	public Page<BlackListModel> paginate(BlackListModel blackListModel);
     public List<ReviewModel> findAll();
     public Page<ReviewModel> paginate(ReviewModel reviewModel);
+	public ReviewModel addReview(ReviewModel reviewModel) throws Exception;
 }

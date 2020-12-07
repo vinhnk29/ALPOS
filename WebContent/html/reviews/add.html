@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="#{review.new.title}"></title>
+</head>
+<body>
+<h1 th:text="#{review.new.title}"></h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form th:method="POST" th:action="@{/reviews}" th:object="${review}" th:fragment="form (title, action, method)" enctype="multipart/form-data">
+
+            <label style="font-size: 25px;" th:for="${#ids.next('userId')}" th:text="#{review.form.user}">User</label><br>
+            <select th:field="*{userId}" style="width: 100%; height: 30px;">
+                <option value=""> -- </option>
+                <option th:each="user : ${users}"
+                        th:value="${user.id}"
+                        th:utext="${user.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error">Incorrect user</p>
+            <br><br>
+            <label style="font-size: 25px;" th:for="${#ids.next('bookId')}" th:text="#{book.form.book}">Book</label><br>
+            <select th:field="*{bookId}" style="width: 100%; height: 30px;">
+                <option value=""> -- </option>
+                <option th:each="book : ${books}"
+                        th:value="${book.id}"
+                        th:utext="${book.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('bookId')}" th:errors="*{bookId}" class="error">Incorrect book</p>
+            <br><br>
+            <label style="font-size: 25px;" th:for="${#ids.next('hastagId')}" th:text="#{book.form.hastag}">Hastag</label><br>
+            <select th:field="*{hastagId}" style="width: 100%; height: 30px;">
+                <option value=""> -- </option>
+                <option th:each="hastag : ${hastags}"
+                        th:value="${hastag.id}"
+                        th:utext="${hastag.name}"/>
+            </select>
+            <p style="color: red" th:if="${#fields.hasErrors('hastagId')}" th:errors="*{hastagId}" class="error">Incorrect hastag</p>
+            <br><br>
+
+            <label style="font-size: 25px;" th:for="${#ids.next('content')}" th:text="#{book.form.content}">Content</label>
+            <br>
+            <textarea id="content" name="blog" rows="7" cols="73">
+            </textarea>
+            <br><br>
+
+            <input type="submit" value="Sign up" class="edit-btn" th:attr="value=#{book.new.title}"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

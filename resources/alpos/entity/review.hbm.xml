@@ -19,6 +19,10 @@
 
 		<many-to-one name="book" class="alpos.entity.Book"
 					 column="book_id" not-null="true" insert="false" update="false"/>
+
+		<many-to-one name="hastag" class="alpos.entity.Hastag"
+					 column="hastag_id" not-null="true" insert="false" update="false"/>
+
   </class>
 
 </hibernate-mapping>  

@@ -10,6 +10,12 @@
     	</id>
 
 		<property name="name" column="name" type="string"></property>
+
+		<list name = "reviews" cascade="all" lazy="true" inverse="false" >
+			<key column = "hastag_id"/>
+			<list-index column = "id" base="1" />
+			<one-to-many class="alpos.entity.Review"/>
+		</list>
   </class>
 
 </hibernate-mapping>  

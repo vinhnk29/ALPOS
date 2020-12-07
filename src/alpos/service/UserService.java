@@ -2,6 +2,8 @@ package alpos.service;
 
 import alpos.model.UserModel;
 
+import java.util.List;
+
 public interface UserService {
 
 	public UserModel addUser(UserModel userModel) throws Exception;
@@ -11,6 +13,7 @@ public interface UserService {
 	public UserModel findUser(Integer id);
 
 	public UserModel editUser(UserModel userModel) throws Exception;
+	public List<UserModel> findAll();
 
 }
 

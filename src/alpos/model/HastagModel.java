@@ -1,26 +1,26 @@
-package alpos.entity;
+package alpos.model;
 
-import java.io.Serializable;
+
 import java.util.List;
 
-public class Hastag implements Serializable {
+public class HastagModel extends BaseModel {
     private Integer id;
     private String  name;
-    private List<Review> reviews;
+    private List<ReviewModel> reviews;
 
-    public List<Review> getReviews() {
+    public List<ReviewModel> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(List<ReviewModel> reviews) {
         this.reviews = reviews;
     }
 
-    public Hastag() {
+    public HastagModel() {
 
     }
 
-    public Hastag(Integer id, String name) {
+    public HastagModel(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
