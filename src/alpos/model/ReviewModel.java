@@ -1,36 +1,38 @@
-package alpos.entity;
+package alpos.model;
 
-import java.io.Serializable;
+import alpos.entity.User;
 
-public class Review implements Serializable {
+public class ReviewModel extends BaseModel{
+
     private Integer id;
     private Integer userId;
     private Integer bookId;
     private Integer hastagId;
     private String  content;
-    private User user;
-    private Book book;
+    private UserModel user;
+    private BookModel book;
 
-    public Book getBook() {
+    public BookModel getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(BookModel book) {
         this.book = book;
     }
 
-    public User getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
 
-    public Review() {
+    public ReviewModel(){
+
     }
 
-    public Review(Integer id, Integer userId, Integer bookId, Integer hastagId, String content) {
+    public ReviewModel(Integer id, Integer userId, Integer bookId, Integer hastagId, String content) {
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;

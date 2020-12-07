@@ -2,6 +2,7 @@ package alpos.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Book implements Serializable {
     private Integer id;
@@ -11,6 +12,15 @@ public class Book implements Serializable {
     private Integer categoryId;
     private Integer releaseYear;
     private User user;
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     private Category category;
     private Publisher publisher;

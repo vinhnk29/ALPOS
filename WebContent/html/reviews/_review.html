@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div th:fragment="copy (review)" class="list-review">
+    <li style="font-size: 20px; font-weight: bold;"><a href="#" style="color: black;"> [[${review.user.name}]]</a> reviewed <a href="#" style="color: black;">[[${review.book.name}]]</a>:</li>
+    <br>
+    <div class="home-2-img">
+        <div class="profile-image" style="width: 30%;">
+            <img style="width: 60%; height: auto;" th:if="${review.book.attached}" th:src="${#viewSupport.getImageUrl(review.book.image)}" alt="">
+        </div>
+        <div class="user-settings" style="width: 70%">
+            <li style="font-size: 20px;">[[${review.book.name}]]</li>
+            <li style="font-size: 20px;">[[${review.book.author.name}]]</li> <br><br>
+            <li style="font-size: 15px;">" <i>[[${review.content}]]</i> "</li>
+        </div>
+    </div>
+    <br>
+
+</div>
+</body>
+</html>

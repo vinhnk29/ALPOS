@@ -13,6 +13,12 @@
 		<property name="bookId" column="book_id" type="int"></property>
 		<property name="hastagId" column="hastag_id" type="int"></property>
 		<property name="content" column="content" type="string"></property>
+
+		<many-to-one name="user" class="alpos.entity.User"
+					 column="user_id" not-null="true" insert="false" update="false"/>
+
+		<many-to-one name="book" class="alpos.entity.Book"
+					 column="book_id" not-null="true" insert="false" update="false"/>
   </class>
 
 </hibernate-mapping>  

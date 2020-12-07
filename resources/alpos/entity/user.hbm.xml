@@ -15,6 +15,12 @@
 		<property name="password" column="password" type="string" length="45"></property>
 		<property name="image" column="image" type="string" length="128"></property>
 
+
+		<list name = "reviews" cascade="all" lazy="true" inverse="false" >
+			<key column = "user_id"/>
+			<list-index column = "id" base="1" />
+			<one-to-many class="alpos.entity.Review"/>
+		</list>
   </class>
 
 </hibernate-mapping>  

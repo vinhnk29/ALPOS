@@ -2,7 +2,6 @@ package alpos.dao.imp;
 
 import alpos.dao.GenericDAO;
 import alpos.util.SearchQueryTemplate;
-
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.*;

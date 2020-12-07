@@ -11,5 +11,6 @@ public interface UserService {
 	public UserModel findUser(Integer id);
 
 	public UserModel editUser(UserModel userModel) throws Exception;
+
 }
 
