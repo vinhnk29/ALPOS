@@ -69,12 +69,11 @@ public class ReviewController {
     @PostMapping(value = "/reviews")
     public String create(@ModelAttribute("review") @Validated ReviewModel reviewModel, BindingResult bindingResult,
                          Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
-        ReviewModel review = reviewService.addReview(reviewModel);
         UserModel userModel = (UserModel) request.getSession().getAttribute("user");
-        review.setUserId(userModel.getId());
+        reviewModel.setUserId(userModel.getId());
+        reviewService.addReview(reviewModel);
+        ReviewModel review = reviewService.addReview(reviewModel);
         return "static_pages/home";
     }
-
-
 
 }
