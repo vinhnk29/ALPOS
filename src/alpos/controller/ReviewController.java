@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -57,8 +58,6 @@ public class ReviewController {
 
     @GetMapping(value = { "/reviews/add" })
     public String add(Locale locale, Model model) {
-        List<UserModel> users = userService.findAll();
-        model.addAttribute("users", users);
         List<BookModel> books = bookService.findAll();
         model.addAttribute("books", books);
         List<HastagModel> hastags = hastagService.findAll();
@@ -70,10 +69,11 @@ public class ReviewController {
     @PostMapping(value = "/reviews")
     public String create(@ModelAttribute("review") @Validated ReviewModel reviewModel, BindingResult bindingResult,
                          Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+        UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+        reviewModel.setUserId(userModel.getId());
+        reviewService.addReview(reviewModel);
         ReviewModel review = reviewService.addReview(reviewModel);
         return "static_pages/home";
     }
-
-
 
 }
