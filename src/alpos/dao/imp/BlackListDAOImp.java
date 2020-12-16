@@ -38,14 +38,13 @@ public class BlackListDAOImp extends GenericDAOImp<BlackList, Integer> implement
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<BlackList> findBlackListedReviewByUserId(Integer userId) {
 		try {
-			return (List<alpos.entity.BlackList>) getHibernateTemplate().execute(new HibernateCallback<BlackList>() {
-				public alpos.entity.BlackList doInHibernate(Session session) throws HibernateException {
+			return getHibernateTemplate().execute(new HibernateCallback<List<BlackList>>() {
+				public List<BlackList> doInHibernate(Session session) throws HibernateException {
 					Query<BlackList> query = session.createQuery("FROM BlackList WHERE userId = :userId", BlackList.class);
 					query.setParameter("userId", userId);
-					return query.uniqueResult();
+					return query.getResultList();
 				}
 			});
 		} catch (Exception e) {

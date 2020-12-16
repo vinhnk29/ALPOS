@@ -1,5 +1,7 @@
 package alpos.service.imp;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +27,7 @@ public class CommentServiceImp implements CommentService {
 
 	@Autowired
 	private UserDAO userDao;
-	
+
 	@Autowired
 	private CommentDAO commentDao;
 
@@ -67,4 +69,23 @@ public class CommentServiceImp implements CommentService {
 		}
 	}
 
+	public List<CommentModel> findCommentByreviewId(Integer reviewId) throws Exception {
+		log.info("Fetching comment from database");
+		try {
+			List<Comment> comments = commentDao.findCommentByReviewId(reviewId);
+			List<CommentModel> commentModelList = new ArrayList<CommentModel>();
+			for(Comment comment : comments) {
+				CommentModel commentModel = new CommentModel();
+				BeanUtils.copyProperties(comment, commentModel);
+//				commentModel.setId(comment.getId());
+//				commentModel.setReviewId(comment.getReviewId());
+//				commentModel.setUserId(comment.getUserId());
+//				commentModel.setContent(comment.getContent());
+				commentModelList.add(commentModel);
+			}
+			return commentModelList;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 }
