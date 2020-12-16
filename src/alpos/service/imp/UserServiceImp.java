@@ -3,11 +3,11 @@ package alpos.service.imp;
 import alpos.dao.RelationshipDAO;
 import alpos.dao.ReviewDAO;
 import alpos.dao.UserDAO;
-import alpos.entity.Review;
 import alpos.entity.User;
-import alpos.model.BookModel;
 import alpos.model.UserModel;
 import alpos.service.UserService;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -15,10 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -35,18 +31,18 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private ReviewDAO reviewDAO;
-	
+
 	@Autowired
 	private RelationshipDAO relationshipDAO;
 
 	public void setUserDao(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-	
+
 	public void setReviewDao(ReviewDAO reviewDAO) {
 		this.reviewDAO = reviewDAO;
 	}
-	
+
 	public void setRelationshipDao(RelationshipDAO relationshipDAO) {
 		this.relationshipDAO = relationshipDAO;
 	}
@@ -98,13 +94,13 @@ public class UserServiceImp implements UserService {
 
 			Long reviewNumbers = reviewDAO.countReview(id);
 			userModel.setReviewNumbers(reviewNumbers);
-			
+
 			Long followers = relationshipDAO.countFollowers(id);
 			userModel.setFollowers(followers);
-			
+
 			Long followings = relationshipDAO.countFollowings(id);
 			userModel.setFollowings(followings);
-			
+
 			return userModel;
 		} catch (Exception e) {
 			log.error("An error occurred while fetching the user details from the database", e);
@@ -144,6 +140,27 @@ public class UserServiceImp implements UserService {
 			log.error("An error occurred while fetching all users from the database", e);
 		}
 		return userModelList;
+	}
+
+	public List<UserModel> followings(Integer userId) {
+		log.info("Find follower in the database");
+		try {
+			List<User> users = relationshipDAO.followings(userId);
+			List<UserModel> userModelList = new ArrayList<UserModel>();
+			for (User user : users) {
+				UserModel userModel = new UserModel();
+				BeanUtils.copyProperties(user, userModel);
+//			userModel.setId(user.getId());
+//			userModel.setReviewId(user.getReviewId());
+//			userModel.setUserId(user.getUserId());
+//			userModel.setContent(user.getContent());
+				userModelList.add(userModel);
+			}
+			return userModelList;
+		} catch (Exception e) {
+
+		}
+		return null;
 	}
 
 }

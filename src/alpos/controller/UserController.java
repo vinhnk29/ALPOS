@@ -3,6 +3,7 @@ package alpos.controller;
 import alpos.interceptor.Flash;
 import alpos.model.CommentModel;
 import alpos.model.UserModel;
+import alpos.service.CommentService;
 import alpos.service.UserService;
 import alpos.uploader.ImageUpload;
 import alpos.uploader.ImageUploader;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -36,6 +38,10 @@ public class UserController {
 	@Autowired
 	@Qualifier("userService")
 	UserService userService;
+	
+	@Autowired
+	@Qualifier("commentService")
+	CommentService commentService;
 
 	@Autowired
 	@Qualifier("imageUploader")
@@ -67,6 +73,8 @@ public class UserController {
 		System.out.println("Show user");
 		model.addAttribute("user", userService.findUser(id));
 		model.addAttribute("comment", new CommentModel());
+		List<CommentModel> comments = commentService.findCommentByreviewId(1);
+		model.addAttribute("comments", comments);
 		return "users/show";
 	}
 
@@ -94,4 +102,14 @@ public class UserController {
 		flash.keep();
 		return "redirect: " + request.getContextPath() + "/users/" + user.getId();
 	}
+	
+	@GetMapping(value = "/users/{id}/followers")
+	public String followings(Model model, HttpServletRequest request, Authentication authentication)
+			throws Exception {
+		System.out.println("Show followers");
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		model.addAttribute("users", userService.followings(userModel.getId()));
+		return "users/followings";
+	}
+	
 }

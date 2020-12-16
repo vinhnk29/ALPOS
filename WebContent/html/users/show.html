@@ -50,6 +50,9 @@
   <p style="color: red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error">Please input something!</p>
   <input type="submit" value="Submit">
 </form>
+<ul>
+<li th:each="comment: ${comments}">[[${comment.content}]]</li>
+</ul>
 
 				</th:block>
 			</section>
