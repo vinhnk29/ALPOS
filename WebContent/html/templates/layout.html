@@ -14,13 +14,15 @@
   <!-- Common styles and scripts -->
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css}">
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap-theme.min.css}">
+  <link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.css}">
   <!-- <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" media="all" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">-->
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/resources/css/custom.css}">
   <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
   <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-  <script src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+  <script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.js}"></script>
+  <script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
   <script type="text/javascript" th:src="@{/resources/js/custom.js}"></script>
   <link rel="shortcut icon" th:href="@{/resources/img/favicon.ico}">
   <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
@@ -67,6 +69,12 @@
       transition-duration: 0.4s;
       cursor: pointer;
       border-radius: 2px;
+    }
+
+    .profile-image {
+      width: 30%;
+      margin-left: 10%;
+      margin-right: 20%;
     }
 
     .edit-btn {
@@ -300,11 +308,13 @@
 
     .header-password{
       margin-left: 8px;
+      margin-top: 3px;
     }
 
     .header-submit{
       color: #008CBA;
       margin-left: 8px;
+      margin-top: 3px;
     }
 
     .header-submit-cont{
@@ -313,6 +323,10 @@
       background-color: white;
       color: black;
       border: 2px solid #008CBA;
+    }
+
+    .header-email {
+      margin-top: 3px;
     }
 
     .header-submit-cont:hover {

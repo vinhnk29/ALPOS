@@ -1,17 +1,17 @@
 package alpos.service.imp;
 
 import alpos.dao.BlackListDAO;
+import alpos.dao.HastagDAO;
+import alpos.dao.ReviewHastagDAO;
 import alpos.entity.BlackList;
-import alpos.model.BlackListModel;
-import alpos.model.UserModel;
+import alpos.entity.Hastag;
+import alpos.entity.ReviewHastag;
+import alpos.model.*;
 import alpos.service.ReviewService;
 import java.util.ArrayList;
 import java.util.List;
 import alpos.dao.ReviewDAO;
 import alpos.entity.Review;
-import alpos.model.AuthorModel;
-import alpos.model.BookModel;
-import alpos.model.ReviewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
@@ -36,6 +36,9 @@ public class ReviewServiceImp implements ReviewService {
     @Autowired
     private ReviewDAO reviewDAO;
 
+    @Autowired
+    private ReviewHastagDAO reviewHastagDAO;
+
     private ReviewServiceImp() {
     }
 
@@ -43,7 +46,11 @@ public class ReviewServiceImp implements ReviewService {
         this.reviewDAO = reviewDao;
     }
 
-	@Transactional
+    public void setReviewHastagDAO(ReviewHastagDAO reviewHastagDAO) {
+        this.reviewHastagDAO = reviewHastagDAO;
+    }
+
+    @Transactional
 	public void blackList(Integer reviewId, Integer userId) throws Exception {
 		BlackList blackList = new BlackList();
 		blackList.setReviewId(reviewId);
@@ -126,7 +133,6 @@ public class ReviewServiceImp implements ReviewService {
                 book.setAuthor(author);
                 model.setBook(book);
 
-
                 return model;
             });
         } catch (Exception e) {
@@ -140,14 +146,19 @@ public class ReviewServiceImp implements ReviewService {
         log.info("Adding the review in the database");
         try {
             Review condition = new Review();
-            condition.setId(reviewModel.getId());
             condition.setUserId(reviewModel.getUserId());
             condition.setBookId(reviewModel.getBookId());
-            condition.setHastagId(reviewModel.getHastagId());
             condition.setContent(reviewModel.getContent());
             Review review = reviewDAO.makePersistent(condition);
+
+            for (Integer hashtagId: reviewModel.getHastagId()) {
+                ReviewHastag reviewHastag = new ReviewHastag();
+                reviewHastag.setReviewId(review.getId());
+                reviewHastag.setHastagId(hashtagId);
+                reviewHastagDAO.makePersistent(reviewHastag);
+            }
+
             reviewModel = new ReviewModel();
-            BeanUtils.copyProperties(review, reviewModel);
             return reviewModel;
         } catch (Exception e) {
             log.error("An error occurred while adding the review details to the database", e);

@@ -2,44 +2,113 @@
 <html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title th:text="#{review.new.title}"></title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function() {
+                $("#hastagq").autocomplete({
+                    source : function(request, response) {
+                        var url = '[[@{/hastags}]]';
+                        var key;
+                        $.ajax(url, {
+                            contentType : "application/json",
+                            type: 'GET',
+                            dataType: 'json',
+                            data: {
+                                key: key
+                            },
+                            success: function (data) {
+                                $('#hastag').empty();
+                                data.forEach(function(item) {
+                                    $('#hastag').append('<option value="' + item.id + '">' + item.name + '</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <h1 th:text="#{review.new.title}"></h1>
+<div class="profile">
+    <div class="profile-image">
+        <img style="width: 100%; height: auto;" th:if="${book.attached}" th:src="${#viewSupport.getImageUrl(book.image)}" alt="">
+    </div>
+    <div class="user-settings">
+        <h1 class="user-name">[[${book.name}]]</h1>
+        <h1 style="font-size: 20px;">By [[${book.author.name}]] </h1>
+
+        <div class="profile-stats">
+
+            <ul style=" list-style-type: none; font-size: 20px; margin-top: 10%; margin-left: -5%;" >
+                <li style="margin-top: 5%;"><span class="profile-stat-count"><img style="width: 20px; height: 20px;" src="https://www.flaticon.com/svg/static/icons/svg/2360/2360068.svg"> Publisher: </span> [[${book.publisher.name}]]</li>
+                <li style="margin-top: 5%;"><span class="profile-stat-count"><img style="width: 20px; height: 20px;" src="https://www.flaticon.com/svg/static/icons/svg/1174/1174008.svg"> Category: </span> [[${book.category.name}]]</li>
+                <li style="margin-top: 5%;"><span class="profile-stat-count"><img style="width: 20px; height: 20px;" src="https://www.flaticon.com/svg/static/icons/svg/3301/3301542.svg"> Release year:</span> [[${book.releaseYear}]]</li>
+            </ul>
+        </div>
+
+        <div class="viral-rate">
+            <div>
+                <h3><img style="width: 20px; height: 20px;" src="https://www.flaticon.com/svg/static/icons/svg/616/616489.svg"> Rating: 3.94</h3>
+                <br>
+                <a class="one" href="#">Rating detail ...</a>
+            </div>
+            <div class="review">
+                <h3><img style="width: 20px; height: 20px;" src="https://www.flaticon.com/svg/static/icons/svg/3270/3270320.svg"> Review: 532,267</h3>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <form th:method="POST" th:action="@{/reviews}" th:object="${review}" th:fragment="form (title, action, method)" enctype="multipart/form-data">
-
-            <p style="color: red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error">Incorrect user</p>
-            <br><br>
-            <label style="font-size: 25px;" th:for="${#ids.next('bookId')}" th:text="#{book.form.book}">Book</label><br>
-            <select th:field="*{bookId}" style="width: 100%; height: 30px;">
-                <option value=""> -- </option>
-                <option th:each="book : ${books}"
-                        th:value="${book.id}"
-                        th:utext="${book.name}"/>
-            </select>
-            <p style="color: red" th:if="${#fields.hasErrors('bookId')}" th:errors="*{bookId}" class="error">Incorrect book</p>
-            <br><br>
+            <input type="hidden" name="bookId" th:value="${book.id}">
             <label style="font-size: 25px;" th:for="${#ids.next('hastagId')}" th:text="#{book.form.hastag}">Hastag</label><br>
-            <select th:field="*{hastagId}" style="width: 100%; height: 30px;">
-                <option value=""> -- </option>
-                <option th:each="hastag : ${hastags}"
-                        th:value="${hastag.id}"
-                        th:utext="${hastag.name}"/>
-            </select>
+            <input id="hastag"/>
+            <ul id="hastags">
+            </ul>
+
             <p style="color: red" th:if="${#fields.hasErrors('hastagId')}" th:errors="*{hastagId}" class="error">Incorrect hastag</p>
             <br><br>
-
             <label th:for="${#ids.next('content')}" th:text="#{review.form.content}">Content</label>
                 <textarea id="editor1" th:field="*{content}" cols="80" rows="10"></textarea>
                 <script>
                     CKEDITOR.replace( 'editor1' );
                 </script>
             <br><br>
-
             <input type="submit" value="Sign up" class="edit-btn" th:attr="value=#{book.new.title}"/>
         </form>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var url = '[[@{/hastags}]]';
+        $("#hastag").autocomplete({
+            source : function(request, response) {
+                $.ajax(url, {
+                    type: 'GET',
+                    dataType : "json",
+                    data : {
+                        key : request.term
+                    },
+                    success : function(data) {
+                        //alert(data);
+                        console.log(data);
+                        response($.map(data, function(item) {
+                            return { value: item.name, data: item.id };
+                        }));
+                        //response(data);
+                    }
+                });
+            },
+            minLength: 2,
+            select : function(e, ui) {
+                $('#hastags').append('<li>'+ui.item.value+'<input type="hidden" name="hastagId[' + $('#hastags li').length + ']" value="'+ui.item.data+'"></li>');
+                return ui.item.value;
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <div class="container">
     <div class="profile">
         <div class="profile-image">
-            <img style="width: 50%; height: auto;" th:if="${book.attached}" th:src="${#viewSupport.getImageUrl(book.image)}" alt="">
+            <img style="width: 100%; height: auto;" th:if="${book.attached}" th:src="${#viewSupport.getImageUrl(book.image)}" alt="">
             <button class="edit-btn" style="margin-top: 7%; margin-left: 10%; justify-content: center;" >Add book to bookself</button>
         </div>
         <div class="user-settings">
@@ -38,6 +38,7 @@
     </div>
 </div>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray; width: 100%">
+
 <div class="img-main">
     <img class="img-detail" src="https://images-na.ssl-images-amazon.com/images/I/71QKQ9mwV7L.jpg">
     <img class="img-detail" src="https://images-na.ssl-images-amazon.com/images/I/51pCXWFd7CL.jpg">
@@ -56,7 +57,10 @@
     <div class="right-activity">
         <h4>The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life (ebook)</h4>
         <h4>-----</h4>
-        <button class="edit-btn" style="justify-content: center; padding: 4px 12px;" >Write a review</button>
+        <form method="get" action="/com_spring_sample_war_exploded/reviews/add">
+            <input type="hidden" name="bookId" th:value="${book.id}">
+            <button class="edit-btn" style="justify-content: center; padding: 4px 12px;" >Write a review</button>
+        </form>
     </div>
 </div>
 

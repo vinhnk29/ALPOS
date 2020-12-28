@@ -11,7 +11,6 @@
 
 		<property name="userId" column="user_id" type="int"></property>
 		<property name="bookId" column="book_id" type="int"></property>
-		<property name="hastagId" column="hastag_id" type="int"></property>
 		<property name="content" column="content" type="string"></property>
 
 		<many-to-one name="user" class="alpos.entity.User"
@@ -20,8 +19,11 @@
 		<many-to-one name="book" class="alpos.entity.Book"
 					 column="book_id" not-null="true" insert="false" update="false"/>
 
-		<many-to-one name="hastag" class="alpos.entity.Hastag"
-					 column="hastag_id" not-null="true" insert="false" update="false"/>
+		<list name = "reviewHastags" cascade="all" lazy="true" inverse="false" >
+			<key column = "review_id"/>
+			<list-index column = "id" base="1" />
+			<one-to-many class="alpos.entity.ReviewHastag"/>
+		</list>
 
   </class>
 
