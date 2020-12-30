@@ -2,6 +2,7 @@ package alpos.model;
 
 import alpos.uploader.ImageUpload;
 import alpos.uploader.cloudinary.CloudinaryImageUpload;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ public class BookModel extends BaseModel {
     @NotNull(message = "{book.validation.category_id.required}")
     private Integer categoryId;
     private Integer releaseYear;
+    @JsonIgnore
     private MultipartFile file;
 
     private PublisherModel publisher;
@@ -135,7 +137,7 @@ public class BookModel extends BaseModel {
     public boolean isAttached() {
         return StringUtils.hasText(image);
     }
-
+    @JsonIgnore
     public ImageUpload getUpload() {
         ImageUpload file = new CloudinaryImageUpload();
         if (StringUtils.hasText(image)) {
