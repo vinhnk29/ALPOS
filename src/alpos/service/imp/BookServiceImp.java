@@ -186,4 +186,23 @@ public class BookServiceImp implements BookService {
             return null;
         }
     }
+
+
+    @Transactional(readOnly = true)
+    public List<BookModel> findBookByKey(String key){
+        log.info("Filter book for key in the database");
+        List<BookModel> bookModelList = new ArrayList<BookModel>();
+        try {
+            List<Book> bookList = bookDao.findBookByKey(key);
+            for (Book book : bookList) {
+                BookModel bookModel = new BookModel();
+                bookModel.setId(book.getId());
+                bookModel.setName(book.getName());
+                bookModelList.add(bookModel);
+            }
+        } catch (Exception e) {
+            log.error("An error occurred while fetching all hastags from the database", e);
+        }
+        return bookModelList;
+    }
 }

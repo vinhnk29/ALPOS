@@ -6,15 +6,7 @@ import java.util.List;
 public class Hastag implements Serializable {
     private Integer id;
     private String  name;
-    private List<Review> reviews;
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
+    private List<ReviewHastag> reviewHastags;
 
     public Hastag() {
 
@@ -39,5 +31,13 @@ public class Hastag implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ReviewHastag> getReviewHastags() {
+        return reviewHastags;
+    }
+
+    public void setReviewHastags(List<ReviewHastag> reviewHastags) {
+        this.reviewHastags = reviewHastags;
     }
 }

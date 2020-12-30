@@ -43,7 +43,11 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 	
-		<bean id="commentDao" class="alpos.dao.imp.CommentDAOImp">
+	<bean id="commentDao" class="alpos.dao.imp.CommentDAOImp">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="reviewHastagDao" class="alpos.dao.imp.ReviewHastagDAOImp">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 </beans>

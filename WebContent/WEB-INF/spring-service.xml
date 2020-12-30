@@ -41,6 +41,7 @@
 		<qualifier value="reviewService"/>
     	<property name="blackListDao" ref="blackListDao" />
          <property name="reviewDao" ref="reviewDao" />
+         <property name="reviewHastagDAO" ref="reviewHastagDao" />
      </bean>
 
          <bean id="commentService" class="alpos.service.imp.CommentServiceImp">

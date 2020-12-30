@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ALPOS</groupId>
 	<artifactId>ALPOS</artifactId>
@@ -12,13 +12,7 @@
 			<url>https://repo.spring.io/plugins-release/</url>
 		</repository>
 	</repositories> -->
-
-	 <dependencies>
-		 <dependency>
-			 <groupId>org.webjars</groupId>
-			 <artifactId>ckeditor</artifactId>
-			 <version>4.14.0</version>
-		 </dependency>
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -38,27 +32,27 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-orm</artifactId>
-		    <version>5.2.8.RELEASE</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.2.8.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>5.3.4.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.3.4.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>5.3.4.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.3.4.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>5.3.4.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.3.4.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client -->
 		<!-- <dependency>
@@ -68,9 +62,9 @@
 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-acl -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-acl</artifactId>
-		    <version>5.3.4.RELEASE</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+			<version>5.3.4.RELEASE</version>
 		</dependency>
 		<!-- <dependency>
 		  	<groupId>io.jsonwebtoken</groupId>
@@ -108,39 +102,39 @@
 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-mail</artifactId>
-		    <version>2.3.3.RELEASE</version>
-		    <exclusions>
-			    <exclusion>
-			    	<groupId>org.springframework.boot</groupId>
-			      	<artifactId>spring-boot-starter-logging</artifactId>
-			    </exclusion>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>2.3.3.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
 		<dependency>
-		    <groupId>org.thymeleaf</groupId>
-		    <artifactId>thymeleaf</artifactId>
-		    <version>3.0.11.RELEASE</version>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.0.11.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
 		<dependency>
-		    <groupId>org.thymeleaf</groupId>
-		    <artifactId>thymeleaf-spring5</artifactId>
-		    <version>3.0.11.RELEASE</version>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>3.0.11.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
 		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-commons</artifactId>
-		    <version>2.3.3.RELEASE</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>2.3.3.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
 		<dependency>
-		    <groupId>org.springframework.security.oauth</groupId>
-		    <artifactId>spring-security-oauth2</artifactId>
-		    <version>2.5.0.RELEASE</version>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.5.0.RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.social/spring-social-config -->
 		<!-- <dependency>
@@ -168,52 +162,52 @@
 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
 		<dependency>
-		    <groupId>org.thymeleaf.extras</groupId>
-		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		    <version>3.0.4.RELEASE</version>
-		</dependency>			
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
 		<dependency>
-		    <groupId>org.apache.tiles</groupId>
-		    <artifactId>tiles-jsp</artifactId>
-		    <version>3.0.8</version>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.8</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.time4j/time4j-base -->
 		<dependency>
-		    <groupId>net.time4j</groupId>
-		    <artifactId>time4j-base</artifactId>
-		    <version>5.6</version>
+			<groupId>net.time4j</groupId>
+			<artifactId>time4j-base</artifactId>
+			<version>5.6</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>5.4.20.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.20.Final</version>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.21</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>jquery</artifactId>
-		    <version>3.5.1</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/ckeditor -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>ckeditor</artifactId>
-		    <version>4.14.0</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>ckeditor</artifactId>
+			<version>4.14.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap</artifactId>
-		    <version>3.4.1</version>
-		    <exclusions>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.4.1</version>
+			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
 					<groupId>org.webjars</groupId>
@@ -223,21 +217,27 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>font-awesome</artifactId>
-		    <version>5.14.0</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>5.14.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.webjars/js-cookie -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>js-cookie</artifactId>
-		    <version>2.2.1</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>js-cookie</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>1.12.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.jcip/jcip-annotations -->
 		<dependency>
-		    <groupId>net.jcip</groupId>
-		    <artifactId>jcip-annotations</artifactId>
-		    <version>1.0</version>
+			<groupId>net.jcip</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<version>1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.jboss.dna/dna-common -->
 		<!-- <dependency>
@@ -263,92 +263,92 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-taglib -->
 		<dependency>
-		    <groupId>com.cloudinary</groupId>
-		    <artifactId>cloudinary-taglib</artifactId>
-		    <version>1.26.0</version>
-		    <exclusions>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-taglib</artifactId>
+			<version>1.26.0</version>
+			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
 					<groupId>javax.servlet</groupId>
-      				<artifactId>jsp-api</artifactId>
+					<artifactId>jsp-api</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44 -->
 		<dependency>
-		    <groupId>com.cloudinary</groupId>
-		    <artifactId>cloudinary-http44</artifactId>
-		    <version>1.26.0</version>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.26.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-core -->
 		<dependency>
-		    <groupId>com.cloudinary</groupId>
-		    <artifactId>cloudinary-core</artifactId>
-		    <version>1.26.0</version>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-core</artifactId>
+			<version>1.26.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.7</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.7</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.11</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.11</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-annotations</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-parameter-names -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.module</groupId>
-		    <artifactId>jackson-module-parameter-names</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-parameter-names</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.dataformat</groupId>
-		    <artifactId>jackson-dataformat-xml</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20200518</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20200518</version>
 		</dependency>
 		<!-- Servlet -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>4.0.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -380,10 +380,10 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-simple</artifactId>
-		    <version>1.7.30</version>
-		    <scope>test</scope>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>

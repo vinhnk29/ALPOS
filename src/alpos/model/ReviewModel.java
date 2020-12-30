@@ -1,17 +1,33 @@
 package alpos.model;
 
-import alpos.entity.User;
+import java.util.List;
 
 public class ReviewModel extends BaseModel{
-
     private Integer id;
     private Integer userId;
     private Integer bookId;
-    private Integer hastagId;
+    private List<Integer> hastagId;
     private String  content;
     private UserModel user;
     private BookModel book;
     private HastagModel hastag;
+
+
+    public List<Integer> getHastagId() {
+        return hastagId;
+    }
+
+    public void setHastagId(List<Integer> hastagId) {
+        this.hastagId = hastagId;
+    }
+
+    public ReviewModel(Integer id, Integer userId, Integer bookId, List<Integer> hastagId, String content) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.hastagId = hastagId;
+        this.content = content;
+    }
 
     public HastagModel getHastag() {
         return hastag;
@@ -41,13 +57,7 @@ public class ReviewModel extends BaseModel{
 
     }
 
-    public ReviewModel(Integer id, Integer userId, Integer bookId, Integer hastagId, String content) {
-        this.id = id;
-        this.userId = userId;
-        this.bookId = bookId;
-        this.hastagId = hastagId;
-        this.content = content;
-    }
+
 
     public Integer getId() {
         return id;
@@ -71,14 +81,6 @@ public class ReviewModel extends BaseModel{
 
     public void setBookId(Integer bookId) {
         this.bookId = bookId;
-    }
-
-    public Integer getHastagId() {
-        return hastagId;
-    }
-
-    public void setHastagId(Integer hastagId) {
-        this.hastagId = hastagId;
     }
 
     public String getContent() {
