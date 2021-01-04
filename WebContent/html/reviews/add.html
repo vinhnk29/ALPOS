@@ -104,10 +104,19 @@
             },
             minLength: 2,
             select : function(e, ui) {
-                $('#hastags').append('<li>'+ui.item.value+'<input type="hidden" name="hastagId[' + $('#hastags li').length + ']" value="'+ui.item.data+'"></li>');
+                $('#hastags').append('<li id="hashtag-' + ui.item.data + '"><div><span>'+ui.item.value+'</span><input type="hidden" name="hastagId[' + $('#hastags li').length + ']" value="'+ui.item.data+'"><button class="delete">Delete</button></div></li>');
+                $('#hashtag-'+ui.item.data+' .delete').click(function(event){
+                    event.stopImmediatePropagation();
+                    $(this).parent().parent().remove();
+                });
                 return ui.item.value;
             }
         });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+
     });
 </script>
 </body>

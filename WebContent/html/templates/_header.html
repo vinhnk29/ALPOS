@@ -80,10 +80,10 @@
 					  $('#search').append('<li>'+ui.item.value+'</li>');
 					  return ui.item.value;
 				  }
-			  }).data("autocomplete")._renderItem= function( ul,item ) {
-				  return $("<li></li>").data("item.autocomplete", item)
-						  .append( '<a href="[[@{/books}]]/' + item.data + '">' + item.value + '</a>');
-			  };
+			  });//.autocomplete("instance")._renderItem = function( ul,item ) {
+				 // return $("<li></li>").data("item.autocomplete", item)
+				//		  .append( '<a href="[[@{/books}]]/' + item.data + '">' + item.value + '</a>');
+			  //};
 		  });
 	  </script>
   </header>
