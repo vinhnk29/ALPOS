@@ -33,15 +33,15 @@ public class ReviewServiceImp implements ReviewService {
 		this.blackListDAO = blackListDAO;
 	}
 
-    @Autowired
-    private ReviewDAO reviewDAO;
+	@Autowired
+	private ReviewDAO reviewDAO;
 
-    private ReviewServiceImp() {
-    }
+	private ReviewServiceImp() {
+	}
 
-    public void setReviewDao(ReviewDAO reviewDao) {
-        this.reviewDAO = reviewDao;
-    }
+	public void setReviewDao(ReviewDAO reviewDao) {
+		this.reviewDAO = reviewDao;
+	}
 
 	@Transactional
 	public void blackList(Integer reviewId, Integer userId) throws Exception {
@@ -65,7 +65,7 @@ public class ReviewServiceImp implements ReviewService {
 		}
 		return blackListModelList;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Page<BlackListModel> paginate(BlackListModel blackListModel) {
@@ -82,79 +82,100 @@ public class ReviewServiceImp implements ReviewService {
 				return model;
 
 			});
-			
+
 		} catch (Exception e) {
 			log.error("An error occurred while fetching the user details by email from the database", e);
 			return null;
 		}
 	}
 
-    public List<ReviewModel> findAll() {
-        log.info("Fetching all reviews in the database");
-        List<ReviewModel> reviewModelList = new ArrayList<ReviewModel>();
-        try {
-            List<Review> reviewList = reviewDAO.findAll();
-            for (Review review : reviewList) {
-                ReviewModel reviewModel = new ReviewModel();
-                BeanUtils.copyProperties(review, reviewModel);
-                reviewModelList.add(reviewModel);
-            }
-        } catch (Exception e) {
-            log.error("An error occurred while fetching all reviews from the database", e);
-        }
-        return reviewModelList;
-    }
+	public List<ReviewModel> findAll() {
+		log.info("Fetching all reviews in the database");
+		List<ReviewModel> reviewModelList = new ArrayList<ReviewModel>();
+		try {
+			List<Review> reviewList = reviewDAO.findAll();
+			for (Review review : reviewList) {
+				ReviewModel reviewModel = new ReviewModel();
+				BeanUtils.copyProperties(review, reviewModel);
+				reviewModelList.add(reviewModel);
+			}
+		} catch (Exception e) {
+			log.error("An error occurred while fetching all reviews from the database", e);
+		}
+		return reviewModelList;
+	}
 
-    @Override
-    @Transactional(readOnly = true)
-    public Page<ReviewModel> paginate(ReviewModel reviewModel) {
-        log.info("Fetching the reviews in the database");
-        try {
-            Review condition = new Review();
-            condition.setUserId(reviewModel.getUserId());
-            Page<Review> reviews = reviewDAO.paginate(condition, reviewModel.getPageable());
-            return reviews.map(review -> {
-                ReviewModel model = new ReviewModel();
-                BeanUtils.copyProperties(review,model);
-                UserModel user = new UserModel();
-                BeanUtils.copyProperties(review.getUser(),user);
-                model.setUser(user);
-                BookModel book = new BookModel();
-                AuthorModel author = new AuthorModel();
-                BeanUtils.copyProperties(review.getBook(),book);
-                BeanUtils.copyProperties(review.getBook().getAuthor(),author);
-                book.setAuthor(author);
-                model.setBook(book);
+	@Override
+	@Transactional(readOnly = true)
+	public Page<ReviewModel> paginate(ReviewModel reviewModel) {
+		log.info("Fetching the reviews in the database");
+		try {
+			Review condition = new Review();
+			condition.setUserId(reviewModel.getUserId());
+			Page<Review> reviews = reviewDAO.paginate(condition, reviewModel.getPageable());
+			return reviews.map(review -> {
+				ReviewModel model = new ReviewModel();
+				BeanUtils.copyProperties(review, model);
+				UserModel user = new UserModel();
+				BeanUtils.copyProperties(review.getUser(), user);
+				model.setUser(user);
+				BookModel book = new BookModel();
+				AuthorModel author = new AuthorModel();
+				BeanUtils.copyProperties(review.getBook(), book);
+				BeanUtils.copyProperties(review.getBook().getAuthor(), author);
+				book.setAuthor(author);
+				model.setBook(book);
 
+				return model;
+			});
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return null;
+		}
+	}
 
-                return model;
-            });
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return null;
-        }
-    }
+	@Transactional
+	public ReviewModel addReview(ReviewModel reviewModel) throws Exception {
+		log.info("Adding the review in the database");
+		try {
+			Review condition = new Review();
+			condition.setId(reviewModel.getId());
+			condition.setUserId(reviewModel.getUserId());
+			condition.setBookId(reviewModel.getBookId());
+			condition.setHastagId(reviewModel.getHastagId());
+			condition.setContent(reviewModel.getContent());
+			Review review = reviewDAO.makePersistent(condition);
+			reviewModel = new ReviewModel();
+			BeanUtils.copyProperties(review, reviewModel);
+			return reviewModel;
+		} catch (Exception e) {
+			log.error("An error occurred while adding the review details to the database", e);
+			throw e;
+		}
+	}
 
-    @Transactional
-    public ReviewModel addReview(ReviewModel reviewModel) throws Exception {
-        log.info("Adding the review in the database");
-        try {
-            Review condition = new Review();
-            condition.setId(reviewModel.getId());
-            condition.setUserId(reviewModel.getUserId());
-            condition.setBookId(reviewModel.getBookId());
-            condition.setHastagId(reviewModel.getHastagId());
-            condition.setContent(reviewModel.getContent());
-            Review review = reviewDAO.makePersistent(condition);
-            reviewModel = new ReviewModel();
-            BeanUtils.copyProperties(review, reviewModel);
-            return reviewModel;
-        } catch (Exception e) {
-            log.error("An error occurred while adding the review details to the database", e);
-            throw e;
-        }
-    }
+	@Transactional(readOnly = true)
+	public ReviewModel findReviewById(Integer reviewId) throws Exception {
+		log.info("Find the review in the database");
+		try {
+			Review review = reviewDAO.find(reviewId);
+			ReviewModel reviewModel = new ReviewModel();
+			BeanUtils.copyProperties(review, reviewModel);
 
+			UserModel userModel = new UserModel();
+			BeanUtils.copyProperties(review.getUser(), userModel);
+			reviewModel.setUser(userModel);
+			
+			BookModel bookModel = new BookModel();
+			BeanUtils.copyProperties(review.getBook(), bookModel);
+			reviewModel.setBook(bookModel);
+			
 
+			return reviewModel;
+		} catch (Exception e) {
+			log.error("An error occurred while finding the review details in the database", e);
+			throw e;
+		}
+	}
 
 }

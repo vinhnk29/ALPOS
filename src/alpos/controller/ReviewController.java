@@ -75,5 +75,14 @@ public class ReviewController {
         ReviewModel review = reviewService.addReview(reviewModel);
         return "static_pages/home";
     }
+    
+    @GetMapping(value = "/reviews/{id}")
+    public String showReview(@PathVariable Integer id, Model model) throws Exception {
+    	ReviewModel review = reviewService.findReviewById(id);
+    	 model.addAttribute("review", review);
+							return "reviews/show";
+    	
+    }
+    
 
 }
