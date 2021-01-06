@@ -30,47 +30,56 @@ import java.util.Locale;
 @Controller
 @EnableWebMvc
 public class ReviewController {
-    private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
-    @Autowired
-    @Qualifier("reviewService")
-    ReviewService reviewService;
+	@Autowired
+	@Qualifier("reviewService")
+	ReviewService reviewService;
 
-    @Autowired
-    @Qualifier("userService")
-    UserService userService;
+	@Autowired
+	@Qualifier("userService")
+	UserService userService;
 
-    @Autowired
-    @Qualifier("bookService")
-    BookService bookService;
+	@Autowired
+	@Qualifier("bookService")
+	BookService bookService;
 
-    @Autowired
-    @Qualifier("hastagService")
-    HastagService hastagService;
+	@Autowired
+	@Qualifier("hastagService")
+	HastagService hastagService;
 
-    public ReviewService getReviewService() {
-        return reviewService;
-    }
+	public ReviewService getReviewService() {
+		return reviewService;
+	}
 
-    public void setReviewService(ReviewService reviewService) {
-        this.reviewService = reviewService;
-    }
+	public void setReviewService(ReviewService reviewService) {
+		this.reviewService = reviewService;
+	}
 
-    @GetMapping(value = { "/reviews/add" })
-    public String add(@RequestParam Integer bookId, Locale locale, Model model) {
-        List<HastagModel> hastags = hastagService.findAll();
-        model.addAttribute("hastags", hastags);
-        model.addAttribute("review", new ReviewModel());
-        model.addAttribute("book", bookService.findBook(bookId));
-        return "reviews/add";
-    }
+	@GetMapping(value = { "/reviews/add" })
+	public String add(@RequestParam Integer bookId, Locale locale, Model model) {
+		List<HastagModel> hastags = hastagService.findAll();
+		model.addAttribute("hastags", hastags);
+		model.addAttribute("review", new ReviewModel());
+		model.addAttribute("book", bookService.findBook(bookId));
+		return "reviews/add";
+	}
 
-    @PostMapping(value = "/reviews")
-    public String create(@ModelAttribute("review") ReviewModel reviewModel, BindingResult bindingResult,
-                         Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
-        UserModel userModel = (UserModel) request.getSession().getAttribute("user");
-        reviewModel.setUserId(userModel.getId());
-        reviewService.addReview(reviewModel);
-        return "static_pages/home";
-    }
+	@PostMapping(value = "/reviews")
+	public String create(@ModelAttribute("review") ReviewModel reviewModel, BindingResult bindingResult, Model model,
+			final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {
+		UserModel userModel = (UserModel) request.getSession().getAttribute("user");
+		reviewModel.setUserId(userModel.getId());
+		reviewService.addReview(reviewModel);
+		return "static_pages/home";
+	}
+
+	@GetMapping(value = "/reviews/{id}")
+	public String showReview(@PathVariable Integer id, Model model) throws Exception {
+		ReviewModel review = reviewService.findReviewById(id);
+		model.addAttribute("review", review);
+		return "reviews/show";
+
+	}
+
 }

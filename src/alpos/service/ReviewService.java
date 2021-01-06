@@ -12,13 +12,18 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface ReviewService {
-	
+
 	public void blackList(Integer reviewId, Integer userId) throws Exception;
-	
+
 	public List<BlackListModel> findBlackListedReviewByUserId(Integer userId);
-	
+
 	public Page<BlackListModel> paginate(BlackListModel blackListModel);
-    public List<ReviewModel> findAll();
-    public Page<ReviewModel> paginate(ReviewModel reviewModel);
+
+	public List<ReviewModel> findAll();
+
+	public Page<ReviewModel> paginate(ReviewModel reviewModel);
+
 	public ReviewModel addReview(ReviewModel reviewModel) throws Exception;
+
+	public ReviewModel findReviewById(Integer reviewId) throws Exception;
 }

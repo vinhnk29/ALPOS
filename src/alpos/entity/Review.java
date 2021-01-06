@@ -10,6 +10,7 @@ public class Review implements Serializable {
     private String  content;
     private User user;
     private Book book;
+    private List<Integer> hastagId;
     private Hastag hastag;
     private List<ReviewHastag> reviewHastags;
 
@@ -86,4 +87,12 @@ public class Review implements Serializable {
     public void setReviewHastags(List<ReviewHastag> reviewHastags) {
         this.reviewHastags = reviewHastags;
     }
+
+	public List<Integer> getHastagId() {
+		return hastagId;
+	}
+
+	public void setHastagId(List<Integer> list) {
+		this.hastagId = list;
+	}
 }
