@@ -12,7 +12,7 @@
 
 		<div class="wrap">
 			<div class="search">
-				<input type="text" class="searchTerm" placeholder="What are you looking for?">
+				<input id="search" type="text" class="searchTerm" placeholder="What are you looking for?">
 				<button type="submit" class="searchButton">
 					<i class="fa fa-search"><img src="https://www.flaticon.com/svg/static/icons/svg/751/751381.svg " style="height: 20px; width: 20px;"></i>
 				</button>
@@ -56,6 +56,37 @@
 
 		</div></form>
 	</div>
+	  <script type="text/javascript">
+		  $(document).ready(function() {
+			  var url = '[[@{/search}]]';
+			  $("#search").autocomplete({
+				  source : function(request, response) {
+					  $.ajax(url, {
+						  type: 'GET',
+						  dataType : "json",
+						  data : {
+							  key : request.term
+						  },
+						  success : function(data) {
+							  console.log(data);
+							  response($.map(data, function(item) {
+								  return { value: item.name, data: item.id };
+							  }));
+						  }
+					  });
+				  },
+				  minLength: 2,
+				  select : function(e, ui) {
+					  $('#search').append('<li>'+ui.item.value+'</li>');
+					  return ui.item.value;
+				  }
+			  });//.autocomplete("instance")._renderItem = function( ul,item ) {
+				 // return $("<li></li>").data("item.autocomplete", item)
+				//		  .append( '<a href="[[@{/books}]]/' + item.data + '">' + item.value + '</a>');
+			  //};
+		  });
+	  </script>
   </header>
+
 </body>
 </html>

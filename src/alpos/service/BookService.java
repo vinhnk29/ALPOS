@@ -9,4 +9,5 @@ public interface BookService {
     public List<BookModel> findAll();
     public BookModel findBook(Integer id);
     public BookModel findRecommendBook();
+    public List<BookModel> findBookByKey(String key);
 }

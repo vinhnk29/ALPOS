@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -54,6 +55,16 @@ public class BookDAOImp extends GenericDAOImp<Book, Integer> implements BookDAO 
             }
         });
         return this.find(bookId);
+    }
+
+    public List<Book> findBookByKey(String key) {
+        return getHibernateTemplate().execute(new HibernateCallback<List<Book>>() {
+            public List<Book> doInHibernate(Session session) throws HibernateException {
+                Query<Book> query = session.createQuery("FROM Book WHERE name like :key ", Book.class);
+                query.setParameter("key", "%" + key + "%");
+                return query.list();
+            }
+        });
     }
 
 }

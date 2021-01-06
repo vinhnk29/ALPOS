@@ -14,7 +14,6 @@
           <element id="module-output" name="com.spring.sample" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.webjars:ckeditor:4.14.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.2.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.8.RELEASE" />
@@ -81,9 +80,11 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
           <element id="library" level="project" name="Maven: org.webjars:jquery:3.5.1" />
+          <element id="library" level="project" name="Maven: org.webjars:ckeditor:4.14.0" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.4.1" />
           <element id="library" level="project" name="Maven: org.webjars:font-awesome:5.14.0" />
           <element id="library" level="project" name="Maven: org.webjars:js-cookie:2.2.1" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery-ui:1.12.1" />
           <element id="library" level="project" name="Maven: net.jcip:jcip-annotations:1.0" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.6" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />

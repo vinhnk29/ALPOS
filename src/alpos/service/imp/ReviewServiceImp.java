@@ -1,17 +1,14 @@
 package alpos.service.imp;
 
 import alpos.dao.BlackListDAO;
+import alpos.dao.ReviewHastagDAO;
 import alpos.entity.BlackList;
-import alpos.model.BlackListModel;
-import alpos.model.UserModel;
+import alpos.model.*;
 import alpos.service.ReviewService;
 import java.util.ArrayList;
 import java.util.List;
 import alpos.dao.ReviewDAO;
 import alpos.entity.Review;
-import alpos.model.AuthorModel;
-import alpos.model.BookModel;
-import alpos.model.ReviewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
@@ -36,14 +33,24 @@ public class ReviewServiceImp implements ReviewService {
 	@Autowired
 	private ReviewDAO reviewDAO;
 
+
 	private ReviewServiceImp() {
 	}
+
+    @Autowired
+    private ReviewHastagDAO reviewHastagDAO;
+
+
 
 	public void setReviewDao(ReviewDAO reviewDao) {
 		this.reviewDAO = reviewDao;
 	}
 
-	@Transactional
+    public void setReviewHastagDAO(ReviewHastagDAO reviewHastagDAO) {
+        this.reviewHastagDAO = reviewHastagDAO;
+    }
+
+    @Transactional
 	public void blackList(Integer reviewId, Integer userId) throws Exception {
 		BlackList blackList = new BlackList();
 		blackList.setReviewId(reviewId);
