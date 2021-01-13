@@ -15,6 +15,17 @@
   <div class="grid-item"></span></div>
   <div class="grid-item"><span style="width: 100%; height: 700px;" th:text="${review.content}"></span></div>  
   
+  <ul>
+<li th:each="comment: ${comments}">[[${comment.content}]]</li>
+</ul>
+
+<form th:action="@{/comments/add}" method="post" th:object="${comment}">
+  <input type="hidden" name="reviewId" th:value="${review.id}">
+  <input type="text" th:field="*{content}" class="form-control">
+  <p style="color: red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error">Please input something!</p>
+  <input type="submit" value="Submit">
+</form>
+  
 </div>
 
 	
