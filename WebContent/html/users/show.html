@@ -44,7 +44,7 @@
 					</form>
 
 <form th:action="@{/comments/add}" method="post" th:object="${comment}">
-  <input type="hidden" name="reviewId" value="1">
+  <input type="hidden" name="reviewId" value="${review.content}">
   <label for="fname">Comment</label>
   <input type="text" th:field="*{content}" class="form-control">
   <p style="color: red" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error">Please input something!</p>

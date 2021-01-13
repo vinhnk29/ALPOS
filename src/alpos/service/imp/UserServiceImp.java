@@ -90,16 +90,16 @@ public class UserServiceImp implements UserService {
 			if (user != null) {
 				userModel = new UserModel();
 				BeanUtils.copyProperties(user, userModel);
+
+				Long reviewNumbers = reviewDAO.countReview(id);
+				userModel.setReviewNumbers(reviewNumbers);
+
+				Long followers = relationshipDAO.countFollowers(id);
+				userModel.setFollowers(followers);
+
+				Long followings = relationshipDAO.countFollowings(id);
+				userModel.setFollowings(followings);
 			}
-
-			Long reviewNumbers = reviewDAO.countReview(id);
-			userModel.setReviewNumbers(reviewNumbers);
-
-			Long followers = relationshipDAO.countFollowers(id);
-			userModel.setFollowers(followers);
-
-			Long followings = relationshipDAO.countFollowings(id);
-			userModel.setFollowings(followings);
 
 			return userModel;
 		} catch (Exception e) {

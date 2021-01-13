@@ -53,10 +53,11 @@ public class CommentController {
 			logger.info("Returning register.jsp page, validate failed");
 			model.addAttribute("user", userService.findUser(userModel.getId()));
 			model.addAttribute("comment", commentModel);
-			return "users/show";
+			return "reviews/show";
 		}
 		commentModel.setUserId(userModel.getId());
 		CommentModel comment = commentService.addComment(commentModel);
-		return "static_pages/home";
+		//return "reviews/show";
+		return "redirect: " + request.getContextPath() + "/reviews/" + comment.getReviewId();
 	}
 }

@@ -1,15 +1,14 @@
 package alpos.controller;
 
-import alpos.entity.Review;
-import alpos.model.BookModel;
+import alpos.model.CommentModel;
 import alpos.model.HastagModel;
 import alpos.model.ReviewModel;
 import alpos.model.UserModel;
 import alpos.service.BookService;
+import alpos.service.CommentService;
 import alpos.service.HastagService;
 import alpos.service.ReviewService;
 import alpos.service.UserService;
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +16,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +44,10 @@ public class ReviewController {
 	@Autowired
 	@Qualifier("hastagService")
 	HastagService hastagService;
+	
+	@Autowired
+	@Qualifier("commentService")
+	CommentService commentService;
 
 	public ReviewService getReviewService() {
 		return reviewService;
@@ -78,6 +79,9 @@ public class ReviewController {
 	public String showReview(@PathVariable Integer id, Model model) throws Exception {
 		ReviewModel review = reviewService.findReviewById(id);
 		model.addAttribute("review", review);
+		model.addAttribute("comment", new CommentModel());
+		List<CommentModel> comments = commentService.findCommentByreviewId(1);
+		model.addAttribute("comments", comments);
 		return "reviews/show";
 
 	}
