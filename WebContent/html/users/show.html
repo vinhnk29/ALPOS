@@ -37,7 +37,7 @@
 						[[${user.followings}]]
 					</h1> -->
 					
-										<form th:method="POST" th:action="@{/blackList}">
+					<form th:method="POST" th:action="@{/blackList}">
 						<input type="hidden" th:name="review_id" th:value="${1}" />
 						<input type="submit" value="BlackList" th:attr="value=#{user.blackList}"
 							class="btn btn-primary" />
