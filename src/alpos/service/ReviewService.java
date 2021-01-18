@@ -23,7 +23,8 @@ public interface ReviewService {
 
 	public Page<ReviewModel> paginate(ReviewModel reviewModel);
 
-	public ReviewModel addReview(ReviewModel reviewModel) throws Exception;
-
 	public ReviewModel findReviewById(Integer reviewId) throws Exception;
+	public ReviewModel findReview(Integer id);
+	public ReviewModel addReview(ReviewModel reviewModel) throws Exception;
+	public ReviewModel editReview(ReviewModel reviewModel) throws Exception;
 }

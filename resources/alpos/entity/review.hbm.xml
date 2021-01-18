@@ -19,7 +19,7 @@
 		<many-to-one name="book" class="alpos.entity.Book"
 					 column="book_id" not-null="true" insert="false" update="false"/>
 
-		<list name = "reviewHastags" cascade="all" lazy="true" inverse="false" >
+		<list name = "reviewHastags" cascade="delete" lazy="true" inverse="false" >
 			<key column = "review_id"/>
 			<list-index column = "id" base="1" />
 			<one-to-many class="alpos.entity.ReviewHastag"/>

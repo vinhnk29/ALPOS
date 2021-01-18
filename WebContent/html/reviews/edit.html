@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html th:replace="~{templates/layout :: layout(~{::title}, ~{::body}, ~{})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="#{review.edit.title}"></title>
+</head>
+<body>
+<h1 th:text="#{review.edit.title}"></h1>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form th:method="PUT" th:action="@{'/reviews/'+${review.id}+'/edit'}" th:object="${review}" th:fragment="form (title, action, method)" enctype="multipart/form-data">
+                <label style="font-size: 25px;" th:for="${#ids.next('hastagId')}" th:text="#{book.form.hastag}">Hastag</label><br>
+                <input id="hastag"/>
+                <ul id="hastags">
+                    <li th:each="hastag: ${review.hastagModels}">[[${hastag.name}]]<span class="delete-hashtag">X</span><input type="hidden" name="hastagId" th:value="${hastag.id}"></li>
+                </ul>
+
+                <p style="color: red" th:if="${#fields.hasErrors('hastagId')}" th:errors="*{hastagId}" class="error">Incorrect hastag</p>
+                <br><br>
+                <label th:for="${#ids.next('content')}" th:text="#{review.form.content}">Content</label>
+                    <textarea id="editor1" th:field="*{content}" cols="80" rows="10"></textarea>
+                    <script>
+                        CKEDITOR.replace( 'editor1' );
+                    </script>
+                <br><br>
+                <input type="submit" value="Save" class="edit-btn" th:attr="value=#{review.edit.button}"/>
+            </form>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var url = '[[@{/hastags}]]';
+        $("#hastag").autocomplete({
+            source : function(request, response) {
+                $.ajax(url, {
+                    type: 'GET',
+                    dataType : "json",
+                    data : {
+                        key : request.term
+                    },
+                    success : function(data) {
+                        console.log(data);
+                        response($.map(data, function(item) {
+                            return { value: item.name, data: item.id };
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            select : function(e, ui) {
+                $('#hastags').append('<li id="hashtag-' + ui.item.data + '"><div><span>'+ui.item.value+'</span><input type="hidden" name="hastagId[' + $('#hastags li').length + ']" value="'+ui.item.data+'"><button class="delete">Delete</button></div></li>');
+                $('#hashtag-'+ui.item.data+' .delete').click(function(event){
+                    event.stopImmediatePropagation();
+                    $(this).parent().parent().remove();
+                });
+                return ui.item.value;
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('.delete-hashtag').click(function() {
+            $(this).parent().remove();
+        });
+    });
+</script>
+</body>
+</html>

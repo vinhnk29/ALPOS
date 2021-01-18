@@ -3,6 +3,7 @@ package alpos.service.imp;
 import alpos.dao.BlackListDAO;
 import alpos.dao.ReviewHastagDAO;
 import alpos.entity.BlackList;
+import alpos.entity.ReviewHastag;
 import alpos.model.*;
 import alpos.service.ReviewService;
 import java.util.ArrayList;
@@ -96,21 +97,23 @@ public class ReviewServiceImp implements ReviewService {
 		}
 	}
 
-	public List<ReviewModel> findAll() {
-		log.info("Fetching all reviews in the database");
-		List<ReviewModel> reviewModelList = new ArrayList<ReviewModel>();
-		try {
-			List<Review> reviewList = reviewDAO.findAll();
-			for (Review review : reviewList) {
-				ReviewModel reviewModel = new ReviewModel();
-				BeanUtils.copyProperties(review, reviewModel);
-				reviewModelList.add(reviewModel);
-			}
-		} catch (Exception e) {
-			log.error("An error occurred while fetching all reviews from the database", e);
-		}
-		return reviewModelList;
-	}
+    public List<ReviewModel> findAll() {
+        log.info("Fetching all reviews in the database");
+        List<ReviewModel> reviewModelList = new ArrayList<ReviewModel>();
+        try {
+            List<Review> reviewList = reviewDAO.findAll();
+            for (Review review : reviewList) {
+                ReviewModel reviewModel = new ReviewModel();
+                BeanUtils.copyProperties(review, reviewModel);
+                reviewModelList.add(reviewModel);
+                ReviewHastagModel reviewHastagModel = new ReviewHastagModel();
+                BeanUtils.copyProperties(review, reviewModel);
+            }
+        } catch (Exception e) {
+            log.error("An error occurred while fetching all reviews from the database", e);
+        }
+        return reviewModelList;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -132,32 +135,11 @@ public class ReviewServiceImp implements ReviewService {
 				BeanUtils.copyProperties(review.getBook().getAuthor(), author);
 				book.setAuthor(author);
 				model.setBook(book);
-
 				return model;
 			});
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return null;
-		}
-	}
-
-	@Transactional
-	public ReviewModel addReview(ReviewModel reviewModel) throws Exception {
-		log.info("Adding the review in the database");
-		try {
-			Review condition = new Review();
-			condition.setId(reviewModel.getId());
-			condition.setUserId(reviewModel.getUserId());
-			condition.setBookId(reviewModel.getBookId());
-			condition.setHastagId(reviewModel.getHastagId());
-			condition.setContent(reviewModel.getContent());
-			Review review = reviewDAO.makePersistent(condition);
-			reviewModel = new ReviewModel();
-			BeanUtils.copyProperties(review, reviewModel);
-			return reviewModel;
-		} catch (Exception e) {
-			log.error("An error occurred while adding the review details to the database", e);
-			throw e;
 		}
 	}
 
@@ -184,5 +166,90 @@ public class ReviewServiceImp implements ReviewService {
 			throw e;
 		}
 	}
+
+    @Transactional
+    public ReviewModel addReview(ReviewModel reviewModel) throws Exception {
+        log.info("Adding the review in the database");
+        try {
+            Review condition = new Review();
+            condition.setUserId(reviewModel.getUserId());
+            condition.setBookId(reviewModel.getBookId());
+            condition.setContent(reviewModel.getContent());
+            Review review = reviewDAO.makePersistent(condition);
+
+            for (Integer hashtagId: reviewModel.getHastagId()) {
+                ReviewHastag reviewHastag = new ReviewHastag();
+                reviewHastag.setReviewId(review.getId());
+                reviewHastag.setHastagId(hashtagId);
+                reviewHastagDAO.makePersistent(reviewHastag);
+            }
+            reviewModel = new ReviewModel();
+            return reviewModel;
+        } catch (Exception e) {
+            log.error("An error occurred while adding the review details to the database", e);
+            throw e;
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ReviewModel findReview(Integer id) {
+        log.info("Checking the review in the database");
+        try {
+            Review review = reviewDAO.find(id);
+            ReviewModel reviewModel = new ReviewModel();
+            if (review != null) {
+                List<HastagModel> hastagModelList = new ArrayList<HastagModel>();
+                BeanUtils.copyProperties(review, reviewModel);
+                for(ReviewHastag reviewHastag : review.getReviewHastags()) {
+                    if(reviewHastag == null || reviewHastag.getHastag() == null) {
+                        continue;
+                    }
+                    HastagModel hastagModel = new HastagModel();
+                    BeanUtils.copyProperties(reviewHastag.getHastag(), hastagModel);
+                    hastagModelList.add(hastagModel);
+                }
+             reviewModel.setHastagModels(hastagModelList);
+            }
+            return reviewModel;
+        } catch (Exception e) {
+            log.error("An error occurred while fetching the review details from the database", e);
+            return null;
+        }
+    }
+
+    @Transactional
+    public ReviewModel editReview(ReviewModel reviewModel) throws Exception {
+        log.info("Updating the review in the database");
+        try {
+            Review condition = reviewDAO.find(reviewModel.getId(), true);
+            condition.setContent(reviewModel.getContent());
+
+            Review review = reviewDAO.makePersistent(condition);
+            log.info("------------------------------------------1");
+
+            for (ReviewHastag reviewHastag : review.getReviewHastags()) {
+                if(reviewHastag == null) {
+                    continue;
+                }
+                reviewHastagDAO.makeTransient(reviewHastag);
+                log.info("------------------------------------------2");
+            }
+
+            for (Integer hashtagId: reviewModel.getHastagId()) {
+                ReviewHastag reviewHastag = new ReviewHastag();
+                reviewHastag.setReviewId(review.getId());
+                reviewHastag.setHastagId(hashtagId);
+                reviewHastagDAO.makePersistent(reviewHastag);
+                log.info("------------------------------------------3");
+            }
+            reviewModel = new ReviewModel();
+            log.info("updated");
+            return reviewModel;
+        }
+        catch (Exception e) {
+            log.error("An error occurred while updating the user details to the database", e);
+            throw e;
+        }
+    }
 
 }

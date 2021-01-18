@@ -11,11 +11,11 @@
 
 		<property name="name" column="name" type="string"></property>
 
-		<list name = "reviewHastags" cascade="all" lazy="true" inverse="false" >
+		<!--<list name = "reviewHastags" cascade="all" lazy="true" inverse="false" >
 			<key column = "hastag_id"/>
 			<list-index column = "id" base="1" />
 			<one-to-many class="alpos.entity.ReviewHastag"/>
-		</list>
+		</list>-->
   </class>
 
 </hibernate-mapping>  

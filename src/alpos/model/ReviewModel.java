@@ -11,6 +11,8 @@ public class ReviewModel extends BaseModel{
     private UserModel user;
     private BookModel book;
     private HastagModel hastag;
+    private List<ReviewHastagModel> reviewHastags;
+    private List<HastagModel> hastagModels;
 
 
     public List<Integer> getHastagId() {
@@ -89,5 +91,21 @@ public class ReviewModel extends BaseModel{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<ReviewHastagModel> getReviewHastags() {
+        return reviewHastags;
+    }
+
+    public void setReviewHastags(List<ReviewHastagModel> reviewHastags) {
+        this.reviewHastags = reviewHastags;
+    }
+
+    public List<HastagModel> getHastagModels() {
+        return hastagModels;
+    }
+
+    public void setHastagModels(List<HastagModel> hastagModels) {
+        this.hastagModels = hastagModels;
     }
 }
