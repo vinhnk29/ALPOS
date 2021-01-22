@@ -106,6 +106,8 @@ public class ReviewController {
         return "reviews/edit";
     }
 
+    /*Edit review */
+
     @PutMapping(value = "/reviews/{id}/edit")
     public String update(@ModelAttribute("review") @Validated ReviewModel reviewModel, BindingResult bindingResult,
 						 Model model, final RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {

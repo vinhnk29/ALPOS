@@ -8,7 +8,6 @@
     	<id name="id" column="id" type="int">
      		<generator class="native"></generator>
     	</id>
-
 		<property name="name" column="name" type="string"></property>
 
 		<list name = "books" cascade="all" lazy="true" inverse="false" >
